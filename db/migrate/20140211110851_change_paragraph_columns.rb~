@@ -1,0 +1,9 @@
+class ChangeParagraphColumns < ActiveRecord::Migration
+  def self.up
+    remove_column :paragraphs,:node
+    add_column :paragraphs, :post_id, :integer, :null => false, :limit => 64
+  end
+
+  def self.down
+  end
+end

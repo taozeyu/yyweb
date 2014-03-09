@@ -1,0 +1,12 @@
+class CreatePostPraises < ActiveRecord::Migration
+  def self.up
+    create_table :post_praises, :id => false do |t|
+      t.integer :user_id, :null => false, :limit => 64
+      t.integer :post_id, :null => false, :limit => 64
+    end
+  end
+
+  def self.down
+    drop_table :post_praises
+  end
+end

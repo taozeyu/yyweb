@@ -1,0 +1,65 @@
+<% content_for :head do %>
+  <link href="/stylesheet/commit.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript">
+    var postId = <%= @post_id || "null" %>;
+    var isEdit = <%= @edit %>;
+    var nodeId = <%= @node.id %>;
+    var type = <%= @type %>;
+  </script>
+  <%= javascript_include_tag "app/editor" %>
+<% end %>
+		<div id="navigation">
+		  <a href="/">首页</a>
+		  <span> >> </span>
+		  <%= link_to @node.name, :controller => 'node', :action => 'show', :id => @node.id %> 
+		  <span> >> </span>
+		  <% if @edit %>编辑<% else %>发贴<% end %>
+		</div>
+		
+		<div class="title">
+		  <% if @type == Post::TranslationType %>
+		    <% if @edit %>编辑翻译贴<% else %>申请翻译<% end %>
+		  <% elsif @type == Post::TopicType %>
+		    <% if @edit %>编辑主题<% else %>发表主题<% end %>
+		  <% end %>
+		</div>
+		<div class="fill-box">
+			<span>标题：<br/></span>
+			<input id="title" type="text" <% if not @title.blank? %>value="<%= @title %>"<% end %>/>
+		</div>
+		<div class="fill-box">
+			<span>
+			  <% if @type == Post::TranslationType %>想说的话：
+			  <% elsif @type == Post::TopicType %>主题内容：
+			  <% end %>
+			<br/></span>
+			<% if @content.nil? %>
+			<textarea id="post-content" class="textarea-notify" spellcheck="false">
+			  <% if @type == Post::TranslationType %>
+			  本文的引荐辞、或自己的感想，或仅仅是单纯的想说点什么。
+			  <% else %>主题内容，请文明用语。
+			  <% end %>
+			</textarea>
+			<% else %>
+			<textarea id="post-content" spellcheck="false"><%= @content %></textarea>
+			<% end %>
+			<% if @type == Post::TopicType and (not @edit)%>
+			<div class="button">
+				<a href="#" id="commit-topic">发表主题</a>
+			</div>
+			<% end %>
+		</div>
+		<% if @type == Post::TranslationType and (not @edit) %>
+		<div id="translation-box" class="fill-box">
+			<span>申请翻译的原文：<br/></span>
+			<textarea id="source-text" class="textarea-notify" spellcheck="false">不应包含特殊符号、分割线、个人感想、翻译后的中文</textarea>
+			<div class="button">
+				<a id="btn-split-article" href="#">原文分段</a>
+			</div>
+  	</div>
+  	<% end %>
+  	<% if @edit %>
+  	<div class="button">
+		  <a id="btn-edit" href="#">提交编辑</a>
+	  </div>
+	  <% end %>

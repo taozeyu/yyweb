@@ -1,0 +1,14 @@
+				<div class="p-source"><%= p.source_text %></div>
+				<% if p.choosed_text.nil? %>
+				<div class="p-translation" style="text-align: center;"><a id="show-paragraph-<%= p.id %>" href="#">(当前该段没有译文，我来翻译吧！)</a></div>
+				<div class="p-state"></div>
+				<% else %>
+				<div class="p-translation"><%= p.choosed_text.content %></div>
+				<div class="p-state" style="visibility:hidden;">
+					<div class="p-commit"><a href="#" id="show-paragraph-<%= p.id %>" title="看看其他候选翻译？干脆我自己来翻译？">不满意当前翻译？</a></div>
+					<span>翻译者 <a href="#"><%= p.choosed_text.author.name %></a></span>
+					<span><%= time_to_now(p.choosed_text.create_at) %></span>
+					<span>其他候选译文(<%= p.translated_text_count - 1 %>)</span>
+					<span>得票(<%= p.choosed_text.vote_count %>)</span>
+				</div>
+				<% end %>

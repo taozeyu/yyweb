@@ -1,0 +1,271 @@
+#navigation {
+	padding-top: 11px;
+}
+#post-operation {
+	padding-top: 73px;
+	padding-left: 127px;
+	width: 137px;
+}
+#post-operation a {
+	font-size: 16px;
+	color: #6C0000;
+	text-decoration: none;
+}
+.operation {
+	padding: 4px;
+	border: 2px outset #FF6633;
+	text-align: center;
+	margin-top: 14px;
+	margin-bottom: 14px;
+	background-color: #FF6633;
+}
+.operation-cancel {
+	padding: 4px;
+	border: 2px outset #FFA384;
+	text-align: center;
+	margin-top: 14px;
+	margin-bottom: 14px;
+	background-color: #FFA384;
+}
+.operation-count {
+	font-size: 11px;
+}
+.label {
+	border: 1px dashed #999999;
+	margin-top: 27px;
+	margin-bottom: 27px;
+	margin-right: 7px;
+	margin-left: 23px;
+}
+.label-title {
+	font-size: 16px;
+	text-align: center;
+	background-color: #FFD8CA;
+	color: #666666;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+.label-content {
+	padding-top: 24px;
+	padding-right: 12px;
+	padding-bottom: 24px;
+	padding-left: 12px;
+	font-size: 12px;
+	color: #333333;
+	line-height: 24px;
+}
+#author {
+	padding-top: 54px;
+	padding-left: 34px;
+	padding-bottom: 12px;
+	font-size: 13px;
+	text-indent: 11px;
+	color: #999999;
+}
+#author-icon {
+	height: 84px;
+	width: 84px;
+	margin-top: 7px;
+	-moz-box-shadow:1px 1px 3px #333333, 0px 0px 4px #333333; -webkit-box-shadow:1px 1px 3px #333333, 0px 0px 4px #333333; box-shadow:1px 1px 3px #333333, 0px 0px 4px #333333;
+}
+#author-info {
+	float: right;
+	width: 470px;
+}
+#author-head {
+	font-size: 18px;
+	color: #333333;
+	padding-top: 16px;
+	text-indent: 0px;
+}
+#author-autograph {
+	font-size: 14px;
+	color: #666666;
+	line-height: 21px;
+	text-indent: 24px;
+	padding-top: 8px;
+}
+#post-content {
+	font-size: 13px;
+	color: #333333;
+	text-indent: 26px;
+	padding-bottom: 17px;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-top-color: #666666;
+	border-right-color: #666666;
+	border-bottom-color: #666666;
+	border-left-color: #666666;
+	margin-bottom: 17px;
+	padding-right: 17px;
+	padding-left: 17px;
+}
+#post-content a {
+	color: #333333;
+	text-decoration: none;
+}
+
+.paragraph {
+	margin-bottom: 9px;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+.p-close {
+	float: right;
+}
+.p-close a {
+	font-size: 13px;
+	color: #930000;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.paragraph-light {
+	margin-bottom: 8px;
+	background-color: #EEEEFF;
+	border: 1px solid #666666;
+	padding-top: 9px;
+	padding-right: 9px;
+	padding-left: 9px;
+}
+.p-source {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 13px;
+	line-height: 17px;
+	color: #000000;
+	padding-bottom: 11px;
+	cursor: text;
+}
+.p-translation {
+	cursor: text;
+	font-size: 13px;
+	line-height: 19px;
+	text-indent: 24px;
+	color: #000000;
+}
+.p-state {
+	font-size: 12px;
+	padding-top: 11px;
+	padding-bottom: 1px;
+	color: #666666;
+	height: 17px;
+}
+.p-state a {
+	color: #666666;
+	text-decoration: none;
+	font-weight: bold;
+}
+.p-commit {
+	float: right;
+}
+.p-commit a {
+	color: #930000;
+	font-weight: bold;
+}
+.p-title {
+	font-size: 16px;
+	color: #000000;
+	padding-bottom: 5px;
+}
+.p-line {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-top-color: #666666;
+	border-right-color: #666666;
+	border-bottom-color: #666666;
+	border-left-color: #666666;
+	height: 8px;
+	margin-top: 7px;
+}
+.paragraph-light textarea {
+	width: 592px;
+	max-width: 592px;
+	min-height: 75px;
+	max-height: 175px;
+}
+.p-button {
+	margin-bottom: 12px;
+	margin-left: 4px;
+	margin-top: 12px;
+}
+.p-button a{
+	color: #FFFFFF;
+	font-size: 15px;
+	text-decoration: none;
+	background-color: #666666;
+	padding-top: 2px;
+	padding-right: 9px;
+	padding-bottom: 2px;
+	padding-left: 9px;
+	border: 2px outset #666666;
+}
+.c-author {
+	text-align: center;
+	width: 89px;
+	float: left;
+}
+.c-author a {
+	font-size: 11px;
+	color: #990000;
+	text-decoration: none;
+}
+.c-author img {
+	height: 42px;
+	width: 42px;
+	-moz-box-shadow:1px 1px 3px #333333, 0px 0px 1px #333333; -webkit-box-shadow:1px 1px 3px #333333, 0px 0px 1px #333333; box-shadow:1px 1px 3px #333333, 0px 0px 1px #333333;
+}
+.c-author-name {
+	color: #000000;
+	font-weight: bold;
+	font-size: 12px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.c-content {
+  padding-left: 98px;
+	min-height: 116px;
+}
+.c-body {
+	font-size: 14px;
+	padding-top: 12px;
+	text-indent: 24px;
+	min-height: 55px;
+}
+.c-operation {
+	text-align: right;
+	color: #666666;
+	font-size: 11px;
+	padding-top: 7px;
+	padding-bottom: 27px;
+}
+.c-operation a {
+	color: #666666;
+	font-size: 11px;
+	text-decoration: none;
+}
+.splite-line {
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-top-color: #666666;
+	border-right-color: #666666;
+	border-bottom-color: #666666;
+	border-left-color: #666666;
+}
+#commit-comment div{
+	color: #333333;
+	font-size: 16px;
+	padding-top: 27px;
+	padding-left: 11px;
+	padding-bottom: 17px;
+	font-weight: bold;
+}
+#commit-comment textarea {
+	width: 100%;
+	max-width: 100%;
+	min-height: 95px;
+	max-height: 235px;
+}

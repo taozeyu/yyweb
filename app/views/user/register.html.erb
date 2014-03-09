@@ -1,0 +1,28 @@
+				<div id="top-tab">
+				  <%= link_to '登录', { :controller=> 'user', :action => 'login_page'}, :class => 'inside-button' %>
+				  <%= link_to '注册', { :controller=> 'user', :action => 'register_page'}, :class => 'inside-button' %>
+				</div>
+				<div id="top-title">注册</div>
+				<div id="top-body">
+				<form method="post" action="/user/register">
+					<span>用户名:</span>
+					<% if @error_code && @error_code[:name] %>
+					<span style="color: #660000;"><%= @error_code[:name][0]%></span>
+					<% end%>
+					<input class="textarea-notify top-text" name="user_name" type="text" value="用户名(20个字以内)"/><br/>
+					<span>邮箱:</span>
+					<% if @error_code && @error_code[:email] %>
+					<span style="color: #660000;"><%= @error_code[:email][0]%></span>
+					<% end%>
+					<input class="textarea-notify top-text" name="email" type="text" value="Email(推荐使用常用邮箱)"/><br/>
+					<span>密码:</span>
+					<% if @error_code && @error_code[:password] %>
+					<span style="color: #660000;"><%= @error_code[:password]%></span>
+					<% end%>
+					<input class="top-text" name="password" type="password"/><br/>
+					再输入一次密码:
+					<input class="top-text" name="password_confirm" type="password"/><br/>
+					<input class="inside-button" type="submit" value="注册"/>
+					<br/>
+				</form>
+				</div>

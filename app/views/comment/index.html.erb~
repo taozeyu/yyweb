@@ -1,0 +1,45 @@
+<% if @comments.any? %>
+
+<% @comments.each do |c| %>
+			<div class="comment">
+				<div class="c-author">
+					<img src="<%= c.author.icon_url %>" />
+					<div class="c-author-name"><%= c.author.name %></div>
+					<% praise_id = c.praise_id_by(curr_user) %>
+					<% if praise_id.nil? %>
+					<a href="#" class="btn-comment-praise" comment-id="<%= c.id %>">
+					  <span class="comment-praise-body">赞</span>
+					  (<span class="comment-praise-count"><%= c.praises_count %></span>)
+					</a>
+					<% else %>
+					<a href="#" class="btn-comment-praise" comment-id="<%= c.id %>" praise-id="<%= praise_id %>">
+					  <span class="comment-praise-body">取消赞</span>
+					  (<span class="comment-praise-count"><%= c.praises_count %></span>)
+					</a>
+					<% end %>
+				</div>
+				<div class="c-content">
+					<div class="c-body">
+					<% c.content.split(/\n/).each do |p|
+					<p><%= p %></p>
+					<% end %>
+					</div>
+					<div class="c-operation">
+					  <% if c.post.can_delete_by?(curr_user) %>
+						<span><a href="#" class="btn-delete-comment" comment-id="<%= c.id %>">[删除]</a></span>
+						<% end %>
+						<% if @can_reply %>
+						<span><a href="#" class="btn-reply" author-name="<%= c.author.name %>">[回复]</a></span>
+						<% end %>
+						<span><%= time_to_now(c.create_at) %>前</span>
+					</div>
+				</div>
+			</div>
+<% end %>
+
+			<!-- 页码 -->
+<%= will_paginate @comments %>
+
+<% else %>
+  <span>没有任何评论....</span>
+<% end %>

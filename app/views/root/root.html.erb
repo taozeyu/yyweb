@@ -1,0 +1,71 @@
+<% content_for :head do %>
+  <link href="/stylesheet/root.css" rel="stylesheet" type="text/css" />
+<% end %>
+
+<% def show_post(p) %>
+  <% return if p.nil? %>
+				<div class="post-icon">
+					<img src="<%= p.author.icon_url %>"/>
+				</div>
+				<div class="post-info">
+					<div class="post-first-line">
+						<% if p.post_type == Post::TopicType %>
+						<span class="post-type">[贴]</span>
+						<% elsif p.post_type == Post::TranslationType %>
+						<span class="post-type">[译]</span>
+						<% end %>
+						<%= link_to limit_length(p.title, 21), post_path(p), :target => "_blank" %>
+					</div>
+					<div class="post-second-line">
+						<span>作者</span>
+						<a href="#"><%= p.author.name %></a>
+						<span>发表于<%= time_to_now(p.create_at) %>前</span>
+						<span>最新顶贴</span>
+						<a href="#"><%= p.last_reply_user.name %></a>
+						<span>于<%= time_to_now(p.last_reply_at) %>前</span>
+					</div>
+				</div>
+				<div class="post-second-count">
+					<div>评 (<%= p.comments_count %>) </div>
+					<div>赞 (<%= p.praises_count %>)</div>
+					<div>关注 (<%= p.attentions_count %>)</div>
+				</div>
+<% end %>
+		<!-- 贴子大杂烩 -->
+		<div id="posts-top" class="title">贴子大杂烩</div>
+		<% @line_posts.each do |line| %>
+		<div class="post-line">
+			<div class="post float-right">
+			<% show_post(line[1]) %>
+			</div>
+			<div class="post">
+			<% show_post(line[0]) %>
+			</div>
+		</div>
+		<% end %>
+		<!-- 版面列表 -->
+		<div id="nodes-list" class="title">版面列表</div>
+		
+		<div class="nodes-line">
+			<a href="/node/1/website-management">站务管理</a>
+			<a href="/node/2/english-news">英语新闻</a>
+			<a href="/node/3/free-chat">吹水冒泡</a>
+		</div>
+        </br>
+        <div class="nodes-line">
+			<a href="/node/6/software">软件</a>
+			<a href="/node/8/english_song">英语歌曲</a>
+			<a href="/node/7/japanese_song">日语歌曲</a>
+		</div>
+        </br>
+        <div class="nodes-line">
+			<a href="/node/4/thesis1">数计院毕业论文</a>
+			<a href="/node/5/thesis2">物信院毕业论文</a>
+		</div>
+		<!-- 关于 -->
+		<div id="nodes-list" class="title">关于本站</div>
+		<div>
+		  官方QQ群 : 161189643</br></br>
+		  我的邮箱 : xiangtantaozeyu@gmail.com</br>
+		</div>
+	</div>

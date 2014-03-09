@@ -1,0 +1,28 @@
+				<div id="top-tab">
+				  <%= link_to '登录', { :controller=> 'user', :action => 'login_page'}, :class => 'inside-button' %>
+				  <%= link_to '注册', { :controller=> 'user', :action => 'register_page'}, :class => 'inside-button' %>
+				</div>
+				<div id="top-title">登陆</div>
+				<div id="top-body">
+				<form method="post" action="/user/login">
+				  <% if params[:login_info].blank? %>
+					<input class="textarea-notify top-text" name="login_info" type="text" value="用户名/email地址"/><br/>
+					<% else %>
+					<input class="top-text" name="login_info" type="text" value="<%= params[:login_info] %>"/><br/>
+					<% end %>
+					<input class="top-text" name="password" type="password"/><br/>
+					<% if not @error_msg.nil? %>
+					<div style="color: #660000;"><%= @error_msg %></div>
+					<% end %>
+					<select name="auto_login">
+            <option value="none">不保存密码</option>
+            <option value="7">保存1周</option>
+            <option value="90">保存3月</option>
+            <option value="365">保存1年</option>
+          </select><br/>
+					<input class="inside-button" type="submit" value="登陆"/>
+					<%= link_to '没有账号？现在就注册吧。', { :controller=> 'user', :action => 'register_page'},
+					                                        :class => 'top-red-link inside-button' %>
+					<br/>
+				</form>
+				</div>

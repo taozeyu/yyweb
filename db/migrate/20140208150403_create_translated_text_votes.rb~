@@ -1,0 +1,13 @@
+class CreateTranslatedTextVotes < ActiveRecord::Migration
+  def self.up
+    create_table :translated_text_votes, :id => false do |t|
+      t.integer :user_id, :null => false, :limit => 64
+      t.integer :post_id, :null => false, :limit => 64
+      t.timestamp :create_at, :null => false
+    end
+  end
+
+  def self.down
+    drop_table :translated_text_votes
+  end
+end
