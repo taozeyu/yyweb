@@ -1,9 +1,0 @@
-class AddPrimayKeyId < ActiveRecord::Migration
-  def self.up
-    add_column :posts, :id, :integer, :null => false, :limit => 64, :default => 0
-    change_column :posts, :id, :primary_key
-  end
-
-  def self.down
-  end
-end

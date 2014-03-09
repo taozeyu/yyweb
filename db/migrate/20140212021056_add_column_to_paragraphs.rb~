@@ -1,8 +1,0 @@
-class AddColumnToParagraphs < ActiveRecord::Migration
-  def self.up
-    add_column :paragraphs, :translated_text_id
-  end
-
-  def self.down
-  end
-end

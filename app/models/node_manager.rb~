@@ -1,4 +1,0 @@
-class NodeManager < ActiveRecord::Base
-
-  belongs_to :node, :foreign_key => :node_id
-end

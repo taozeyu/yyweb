@@ -1,9 +1,0 @@
-class AddPrimaryKey < ActiveRecord::Migration
-  def self.up
-    add_index "translated_text_votes", ["translated_text_id", "user_id"], :unique => true   
-    set_primary_key ', user_id'
-  end
-
-  def self.down
-  end
-end
