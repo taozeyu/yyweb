@@ -33,4 +33,6 @@ YYWeb::Application.routes.draw do
       :constraints => {:id => /\d+/, :page => /\d+/ }
   root :to => 'root#show'
   
+  get 'util/redirect' => 'util#handle_redirect'
+  
 end
