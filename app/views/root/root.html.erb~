@@ -14,7 +14,7 @@
 						<% elsif p.post_type == Post::TranslationType %>
 						<span class="post-type">[译]</span>
 						<% end %>
-						<%= link_to limit_length(p.title, 21), post_path(p), :target => "_blank" %>
+						<%= link_to limit_length(p.title, 21), post_path(p) %>
 					</div>
 					<div class="post-second-line">
 						<span>作者</span>
@@ -45,25 +45,25 @@
 		<div id="nodes">
 		
 			<div class="node piece" style="border-top-color: #FF3300;">
-				<a href="">英语翻译</a><br/>
+				<a href="/node/2/english-news">英语翻译</a><br/>
 			</div>
 			
 			<div class="node piece" style="border-top-color:#006600;">
-				<a href="">站务管理</a><br/>
+				<a href="/node/1/website-management">站务管理</a><br/>
 			</div>
 			
 			<div class="node piece" style="border-top-color:#0000FF;">
-				<a href="">吹水冒泡</a><br/>
+				<a href="/node/3/free-chat">吹水冒泡</a><br/>
 			</div>
 			
 			<div class="node piece" style="border-top-color:#990099;">
-				<a href="">软件</a><br/>
+				<a href="/node/6/software">软件</a><br/>
 			</div>
 			
 			<div style="clear:both"></div>
 			
 			<div class="node piece" style="border-top-color:#FF99CC;">
-				<a href="">英语歌曲</a><br/>
+				<a href="/node/8/english_song">英语歌曲</a><br/>
 			</div>
 			
 			<div class="node piece" style="border-top-color: #FF3300;">
