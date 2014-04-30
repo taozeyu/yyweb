@@ -70,7 +70,7 @@
 	  	</div>
 			<!-- 作者信息 -->
 			<div id="author" class="piece">
-				<div class="proposer">翻译申请人</div>
+				<div>翻译申请人</div>
 				<img id="author-icon" src="<%= @author.icon_url %>" />
 				<div id="author-info">
 					<div id="author-head">

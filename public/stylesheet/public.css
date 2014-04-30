@@ -141,13 +141,13 @@ input:focus, textarea:focus {
 	padding-left: 12px;
 }
 #top-user-list a:hover {
-	border-radius:12px;
+	border-radius: 12px;
 	color: #333333;
 	background-color: #FFFFFF;
 }
 #top-login {
-	margin-left: -91px;
-	width: 295px;
+	margin-left: -180px;
+	width: 325px;
 }
 #top-tab {
 	background-color: #999999;
@@ -180,6 +180,7 @@ input:focus, textarea:focus {
 	background-color: #999999;
 }
 #top-title {
+  color: #FFFFFF;
 	margin-top: 25px;
 	text-align: center;
 	font-weight: normal;

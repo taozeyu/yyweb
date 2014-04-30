@@ -14,7 +14,7 @@
 						<% elsif p.post_type == Post::TranslationType %>
 						<span class="post-type">[译]</span>
 						<% end %>
-						<%= link_to limit_length(p.title, 21), post_path(p) %>
+						<%= link_to limit_length(p.title, 21), post_path(p), :target => "_blank" %>
 					</div>
 					<div class="post-second-line">
 						<span>作者</span>
