@@ -1,8 +1,106 @@
-.nodes-line {
-	margin-left: 21px;
+#describe {
+	border-radius:6px;
+	box-shadow:2px 2px 5px #666666;
+	width: 1024px;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	background-color: #EEEEEE;
+	margin-top: 32px;
+	font-size: 14px;
+	padding-top: 7px;
+	padding-bottom: 7px;
 }
-.nodes-line a {
+.post {
+	height: 51px;
+	margin-bottom: 15px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: solid;
+	border-left-style: none;
+	border-top-color: #CCCCCC;
+	border-right-color: #CCCCCC;
+	border-bottom-color: #CCCCCC;
+	border-left-color: #CCCCCC;
+	border-bottom-width: 1px;
+	padding-bottom: 9px;
+	padding-top: 7px;
+	width: 504px;
+}
+.post .post-icon img {
+	box-shadow:0px 0px 3px #808080;
+	height: 42px;
+	width: 42px;
+	float: left;
+	margin-top: 2px;
+	margin-right: 21px;
+}
+.post .post-info-width {
+	height: 46px;
+	float: left;
+}
+.post .post-type {
+	font-weight: bold;
+	color: #0066CC;
+}
+
+.post .post-first-line {
 	font-size: 19px;
-	color: #333333;
-	margin-right: 14px;
+	display:block;
+	word-break:keep-all;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+.post .post-second-line {
+	font-size: 13px;
+	color: #999999;
+	margin-top: 3px;
+	float: left;
+}.float-right {
+	float: right;
+}
+#post-containers {
+	border-top-color: #FF3300;
+	width: 1024px;
+	padding-top: 37px;
+	padding-right: 25px;
+	padding-bottom: 17px;
+	padding-left: 25px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 37px;
+}
+#post-containers .title {
+	padding: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 21px;
+	margin-left: 0px;
+}
+#nodes {
+	padding-top: 21px;
+	padding-bottom: 247px;
+	padding-left: 78px;
+}
+
+.node {
+	font-size: 25px;
+	width: 120px;
+	padding: 21px;
+	margin-top: 42px;
+	margin-left: 42px;
+	float: left;
+	text-align: center;
+}
+.node a {
+	white-space: nowrap;
+	float: none;
+}
+.node:after {
+	content: "进入版面";
+	font-size: 13px;
+	color: #999999;
+	text-align: right;
+	float: right;
 }

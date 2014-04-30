@@ -69,8 +69,9 @@
 		    <span> >> 贴子正文</span>
 	  	</div>
 			<!-- 作者信息 -->
-			<div id="author">
+			<div id="author" class="piece">
 				<div>翻译申请人</div>
+				<img id="author-icon" src="<%= @author.icon_url %>" />
 				<div id="author-info">
 					<div id="author-head">
 						<%= @author.name %>
@@ -79,22 +80,24 @@
 						<%= @author.signature %>
 					</div>
 				</div>
-				<img id="author-icon" src="<%= @author.icon_url %>" />
+				<div style="clear:both;"></div>
 			</div>
 			<!-- 正文 -->
-			<div class="title" style="text-align: center;"><%= @post.title %></div>
-			<div id="post-content">
-				<% @content.each do |line| %>
-				  <p><%= line %></p>
-				<% end %>
-				<div style="text-align: right">
-					<% if @post.can_delete_by?(curr_user) %>
-					  <a href="#" id="btn-delete-post">[删除]</a>
+			<div id="post-body" class="piece">
+				<div class="title" style="text-align: center;"><%= @post.title %></div>
+				<div class="content">
+					<% @content.each do |line| %>
+					  <p><%= line %></p>
 					<% end %>
-					<% if @post.can_edit_by?(curr_user) %>
-					  <%= link_to '[编辑]', edit_post_path(@post), :class => 'inside-button' %>
-					<% end %>
-					<span><%= formate_date(@post.create_at) %></span>
+					<div style="text-align: right">
+						<% if @post.can_delete_by?(curr_user) %>
+						  <a href="#" id="btn-delete-post">[删除]</a>
+						<% end %>
+						<% if @post.can_edit_by?(curr_user) %>
+						  <%= link_to '[编辑]', edit_post_path(@post), :class => 'inside-button' %>
+						<% end %>
+						<span><%= formate_date(@post.create_at) %></span>
+					</div>
 				</div>
 			</div>
 			<!-- 段落 -->

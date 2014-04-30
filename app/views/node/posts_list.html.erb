@@ -38,38 +38,47 @@
 			</div>
 			
 			<!-- 贴子列表 -->
+			<div id="post-containers">
 			<% @posts.each do |p| %>
-			<div class="post">
-				<div class="post-icon">
-					<img src="<%= p.author.icon_url %>"/>
-				</div>
-				<div class="post-info-width">
-					<div class="post-first-line">
-						<% if p.post_type == Post::TopicType %>
-						<span class="post-type">[贴]</span>
-						<% elsif p.post_type == Post::TranslationType %>
-						<span class="post-type">[译]</span>
-						<% end %>
-						<%= link_to limit_length(p.title, 26), post_path(p), :target => "_blank" %>
+				<div class="post">
+					<div class="post-icon">
+						<img src="<%= p.author.icon_url %>"/>
 					</div>
-					<div class="post-second-line">
-						<span>作者</span>
-						<a href="#"><%= p.author.name %></a>
-						<span>发表于<%= time_to_now(p.create_at) %>前</span>
-						<span>最后评论/翻译</span>
-						<a href="#"><%= p.last_reply_user.name %></a>
-						<span>于<%= time_to_now(p.last_reply_at) %>前</span>
+					<div class="post-info-width">
+						<div class="post-first-line">
+							<% if p.post_type == Post::TopicType %>
+							<span class="post-type">[贴]</span>
+							<% elsif p.post_type == Post::TranslationType %>
+							<span class="post-type">[译]</span>
+							<% end %>
+							<%= link_to p.title, post_path(p), :target => "_blank", :title => p.title %>
+						</div>
+						<div class="post-second-line">
+							<span>作者</span>
+							<a href="#"><%= p.author.name %></a>
+							<span>发表于<%= time_to_now(p.create_at) %>前</span>
+							<span>最后评论/翻译</span>
+							<a href="#"><%= p.last_reply_user.name %></a>
+							<span>于<%= time_to_now(p.last_reply_at) %>前</span>
+						</div>
+					</div>
+					<div class="post-second-count">
+						<div class="attri">
+							<div class="top"><%= p.praises_count %></div>
+							<div class="bottom">赞同</div>
+						</div>
+						<div class="attri">
+							<div class="top"><%= p.attentions_count %></div>
+							<div class="bottom">关注</div>
+						</div>
+						<div class="attri">
+							<div class="top"><%= p.comments_count %></div>
+							<div class="bottom">评论</div>
+						</div>
 					</div>
 				</div>
-				<div class="post-second-count">
-					<div>评 (<%= p.comments_count %>) </div>
-					<div>赞 (<%= p.praises_count %>)</div>
-					<div>关注 (<%= p.attentions_count %>)</div>
-				</div>
-			</div>
-			<div class="post-segment"></div>
 			<% end %>
-			
+			</div>
 			<!-- 页码 -->
 			<%= will_paginate @posts, :class => 'pages' %>
 			
