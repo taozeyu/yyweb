@@ -67,8 +67,10 @@
 	margin-top: 37px;
 }
 .paragraph, .paragraph-light {
-	margin-bottom: 4px;
-	padding: 7px;
+	padding-top: 7px;
+	padding-right: 37px;
+	padding-bottom: 7px;
+	padding-left: 37px;
 }
 .paragraph-light {
 	background-color: #F0F0F0;
@@ -76,13 +78,32 @@
 	border-radius:10px;
 }
 .p-source {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
 	margin-left: 12px;
 }
 .p-translation {
 	margin-top: 25px;
 	margin-bottom: 15px;
 	margin-left: 12px;
+}
+.p-mark {
+	cursor: pointer;
+	border-radius:10px;
+	font-size: 13px;
+	width: 32px;
+	text-align: center;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	position: absolute;
+	margin-left: -29px;
+	margin-top: 7px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.p-mark-useable {
+	background-color: #3366CC;
+}
+.p-mark-useless {
+	background-color: #33CCCC;
 }
 .paragraph .p-state, .paragraph-light .p-state {
 	color: #666666;
@@ -269,4 +290,60 @@
 	color: #000000;
 	margin-bottom: 14px;
 	margin-left: 18px;
+}
+.p-translation-area .state {
+	float: left;
+	width: 80px;
+	text-align: center;
+	margin-bottom: 32px;
+}
+.p-translation-area .state img {
+	box-shadow:0px 0px 3px #333333;
+	height: 42px;
+	width: 42px;
+	margin-top: 7px;
+	margin-bottom: 12px;
+}
+.p-translation-area .state .author-name {
+	font-size: 14px;
+	font-weight: bold;
+}
+.p-translation-area .state .commit-time {
+	font-size: 12px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	color: #666666;
+}
+.p-translation-area .text {
+	float: left;
+	width: 768px;
+	margin-left: 22px;
+	margin-bottom: 7px;
+}
+.p-translation-area .text .button {
+	cursor: pointer;
+	width: 48px;
+	text-align: center;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	float: right;
+}
+.p-translation-area .text .btn-vote {
+	background-color: #3366CC;
+}
+.p-translation-area .text .btn-cancel-vote {
+	background-color: #33CCCC;
+}
+.p-translation-area .text .btn-self {
+	background-color: #666666;
+}
+.p-translation-area .text .button .number {
+	cursor: pointer;
+	color: #FFFFFF;
+	font-size: 14px;
+}
+.p-translation-area .text .button .descr {
+	cursor: pointer;
+	color: #FFFFFF;
+	font-size: 16px;
 }

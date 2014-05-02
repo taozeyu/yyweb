@@ -192,7 +192,7 @@ function initShowPanel(paragraph, id) {
     clickCommitTranslattion(paragraph, id);
     return false;
   });
-  $("#show-paragraph-"+id).click(function(){
+  $(".show-paragraph-"+id).click(function(){
     clickShowParagraph(paragraph, id);
     return false;
   });
@@ -201,7 +201,7 @@ function initShowPanel(paragraph, id) {
     $(this).attr("style", "visibility:hidden;");
     return false;
   });
-  $("#p-delete").click(function(){
+  $(".p-delete").click(function(){
     clickDelete(paragraph, id, $(this).attr("t-id"));
     return false;
   });
@@ -211,6 +211,10 @@ function initShowPanel(paragraph, id) {
   });
   $(".btn-cancel-vote").click(function(){
     clickCancelVote(paragraph, id, $(this).attr("v-id"));
+    return false;
+  });
+  $(".btn-self").click(function(){
+    alert("不可以给自己的翻译投票！");
     return false;
   });
 }
@@ -273,7 +277,7 @@ $(function(){
     paragraph.mouseleave(function(){
       mouseleave(paragraph);
     });
-    $("#show-paragraph-"+id).click(function(){
+    $(".show-paragraph-"+id).click(function(){
       clickShowParagraph(paragraph, id);
       return false;
     });
