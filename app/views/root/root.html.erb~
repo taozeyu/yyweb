@@ -26,12 +26,6 @@
 					</div>
 				</div>
 <% end %>
-		
-		<!-- 网站介绍 -->
-		<div id="describe">
-			译译网，翻译爱好者的社区，碎片式翻译，人人皆可参与。
-		</div>
-		
 		<!-- 贴子大杂烩 -->
 		<div id="post-containers" class="piece">
 			<div id="posts-top" class="title">贴子大杂烩</div>
@@ -73,7 +67,7 @@
 			</div>
 			
 			<div class="node piece" style="border-top-color: #FF3300;">
-				<a href="/node/7/japanese_sone">日语歌曲</a><br/>
+				<a href="">日语歌曲</a><br/>
 			</div>
 			
 			<div style="clear:both"></div>

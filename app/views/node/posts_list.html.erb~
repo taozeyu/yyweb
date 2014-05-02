@@ -51,7 +51,7 @@
 							<% elsif p.post_type == Post::TranslationType %>
 							<span class="post-type">[译]</span>
 							<% end %>
-							<%= link_to p.title, post_path(p), :title => p.title %>
+							<%= link_to p.title, post_path(p), :target => "_blank", :title => p.title %>
 						</div>
 						<div class="post-second-line">
 							<span>作者</span>
