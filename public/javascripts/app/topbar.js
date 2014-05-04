@@ -17,7 +17,7 @@ function unlockButton(btnName) {
   $(btnName).css("cursor", "default");
 }
 
-function showTipsPanel(panelId, clearAfterHide) {
+function showTipsPanel(panelId, clearAfterHide, panelInitFun) {
   if(currTipsPanel == panelId) {
     return;
   }
@@ -40,6 +40,10 @@ function showTipsPanel(panelId, clearAfterHide) {
   panel.click(filterFun);
   $("html").click(hideFun);
   $(".inside-button").click(clickInsideButton);
+  
+  if(panelInitFun) {
+    panelInitFun(panel);
+  }
 }
 
 function hideTipsPanel(panelId, clearAfterHide) {
@@ -115,7 +119,7 @@ function onPanelCommited(rs) {
   }
 }
 
-function linkButtonToPanel(buttonId, panelId, initUrl) {
+function linkButtonToPanel(buttonId, panelId, initUrl, panelInitFun) {
   $(buttonId).click(function(){
     if(currTipsPanel == panelId) {
       return false;
@@ -130,19 +134,49 @@ function linkButtonToPanel(buttonId, panelId, initUrl) {
         success : function(rs){
           unlockButton(buttonId);
           $(panelId).html(rs);
-          showTipsPanel(panelId, true);
+          showTipsPanel(panelId, true, panelInitFun);
           initTextNotifyEvent(); // call public.js function.
         }
       });
     } else {
-      showTipsPanel(panelId, false);
+      showTipsPanel(panelId, false, panelInitFun);
       initTextNotifyEvent(); // call public.js function.
     }
     return false;
   });
 }
 
+function initNotifyPanel(panel) {
+    
+    var notifyNum = 0;
+    
+    var closeNotifyMessage = function(notify) {
+        notify.remove();
+        notifyNum--;
+        if(notifyNum <= 0) {
+            $('#notification').html('提醒<span class="gray">0</span>');
+            panel.html('<div class="notify"><div class="empty">当前没有任何提醒信息。</div></div>');
+        }
+    };
+    panel.find('.notify').each(function(){
+        var notify = $(this);
+        notify.find('.close').click(function() {
+            
+            closeNotifyMessage(notify);
+            return false;
+        });
+        notify.find('.content').find('a').click(function() {
+            
+            window.open($(this).attr('href'), "_blank");
+            closeNotifyMessage(notify);
+            return false;
+        });
+        notifyNum++;
+    })
+}
+
 $(function(){
   linkButtonToPanel("#sign", "#top-login", "/user/loginpage");
+  linkButtonToPanel("#notification", "#top-notify", null, initNotifyPanel);
   linkButtonToPanel("#user", "#top-user-list");
 });

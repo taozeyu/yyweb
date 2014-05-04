@@ -117,6 +117,7 @@ input:focus, textarea:focus {
 #top-bar .top-tips {
 	z-index: 888;
 	position: absolute;
+	
 	margin-top: 23px;
 	border-radius:12px;
 	background-color: #666666;
@@ -205,10 +206,75 @@ input:focus, textarea:focus {
 	padding: 0px;
 }
 #top-body a:hover {
-	border-radius:0px;
+	border-radius: 0px;
 	color: #CCCCCC;
 	background-color: #666666;
 }
+#top-notify {
+	overflow-y: auto;
+	overflow-x: hidden;
+	margin-left: -180px;
+	max-height: 270px;
+	width: 345px;
+	color: #333333;
+	border: 2px solid #666666;
+}
+#top-notify .notify {
+	transition: background-color 0.45s;
+	border-radius:10px;
+	background-color: #FFFFFF;
+	margin: 7px;
+	font-size: 14px;
+	color: #333333;
+	padding-top: 9px;
+	padding-right: 9px;
+	padding-bottom: 13px;
+	padding-left: 9px;
+}
+#top-notify .notify:hover {
+	background-color: #E4E4E4;	
+}
+#top-notify .notify .content {
+	margin-right: 25px;
+}
+#top-notify .notify .empty {
+	margin-right: 25px;
+	text-align: center;
+	vertical-align: middle;
+	margin-top: 21px;
+	margin-bottom: 21px;
+}
+#top-notify a {
+	font-size: 14px;
+	border-radius: 0px;
+	color: #333333;
+	background-color: none;
+	margin: 0px;
+	padding: 0px;
+	font-weight: bold;
+}
+#top-notify a:hover {
+	border-radius: 0px;
+	color: #666666;
+	background-color: #E4E4E4;
+	margin: 0px;
+	padding: 0px;
+	text-decoration: underline;
+}
+#top-notify .notify .close {
+	border-radius:10px;
+	float: right;
+	color: #FFFFFF;
+	background-color: #FF6666;
+	font-size: 15px;
+	width: 21px;
+	text-align: center;
+	cursor: pointer;
+	
+	text-shadow: 1px 1px 4px #333333;
+	box-shadow:1px 1px 2px #333333;
+}
+
 #main-area {
 	width: 966px;
 	margin-top: 25px;
@@ -235,4 +301,35 @@ input:focus, textarea:focus {
 	border-right-style: none;
 	border-bottom-style: none;
 	border-left-style: solid;
+}
+#notification span {
+	text-shadow: 1px 1px 4px #333333;
+	box-shadow:1px 1px 2px #333333;
+	font-size: 13px;
+	padding-right: 5px;
+	padding-left: 5px;
+	margin-left: 5px;
+	border-radius:6px;
+	font-weight: bold;
+	font-variant: normal;
+}
+#notification:hover span {
+	font-size: 13px;
+	padding-right: 5px;
+	padding-left: 5px;
+	margin-left: 5px;
+	border-radius:6px;
+	color: #FFFFFF;
+	background-color: #666666;
+	font-weight: bold;
+	font-variant: normal;
+	transition: background-color 0.85s;
+}
+#notification .high-light {
+	color: #FFFFFF;
+	background-color: #FF3333;
+}
+#notification .gray {
+	background-color: #999999;
+	color: #FFFFFF;
 }
