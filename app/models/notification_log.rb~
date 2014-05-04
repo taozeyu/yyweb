@@ -1,0 +1,30 @@
+class NotificationLog < ActiveRecord::Base
+  
+  TypeAt = 1
+  TypeVote = 2
+  TypePraisePost = 3
+  TypePraiseComment = 4
+  
+  def self.notify(user, initiator, post, target)
+    if target.class == Comment
+      type = TypeAt
+    elsif target.class == TranslatedTextVote
+      type = TypeVote
+    elsif target.class == PostPraise
+      type = TypePraisePost
+    elsif target.class == CommentPraise
+      type = TypePraiseComment
+    else
+      throw "unknow class type of #{target.class}"
+    end
+    return self.create(
+      :user_id => user.id,
+      :initiator_id => initiator.id,
+      :post_id => post.id,
+      :target_id => target.id,
+      :type => type,
+      :create_at => Time.new
+    )
+  end  
+  
+end

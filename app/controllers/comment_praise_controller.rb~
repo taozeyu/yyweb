@@ -18,7 +18,7 @@ class CommentPraiseController < ApplicationController
       :comment_id => comment.id,
       :create_at => Time.now
     )
-    NotificationMessage.notify(comment.author, curr_user, comment, NotificationMessage::TypePraiseComment)
+    NotificationMessage.notify(comment.author, curr_user, comment, NotificationMessage::TypePraisePost)
     
     render :text => cp.id.to_s
   end

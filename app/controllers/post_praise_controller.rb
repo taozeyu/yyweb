@@ -18,6 +18,8 @@ class PostPraiseController < ApplicationController
       :post_id => post.id,
       :create_at => Time.now
     )
+    NotificationMessage.notify(post.author, curr_user, post, NotificationMessage::TypePraisePost)
+    
     render :text => pp.id.to_s
   end
   

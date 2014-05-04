@@ -17,7 +17,7 @@ class TranslatedTextVoteController < ApplicationController
       tt.paragraph.refresh_choosed
     end
     
-    NotificationMessage.notify(tt.author, curr_user, tt, NotificationMessage::TypeVote)
+    NotificationMessage.notify(tt.author, curr_user, tt, NotificationMessage::TypeAt)
     
     render :text => 'ok'
   end

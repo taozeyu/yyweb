@@ -63,7 +63,7 @@ class CommentController < ApplicationController
       user_name = user_name[1..(user_name.length - 2)]
       if users[user_name].nil?
         user = User.find_by_name(user_name)
-        users[user_name] = (user.nil?) ? :NULL: user
+        users[user_name] = (user.nil?) ? :NULL, user
       end
     end
     users.each do |name, user|

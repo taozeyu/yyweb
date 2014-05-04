@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140304134541) do
+ActiveRecord::Schema.define(:version => 20140503133452) do
 
   create_table "comment_praises", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -47,12 +47,24 @@ ActiveRecord::Schema.define(:version => 20140304134541) do
     t.string "path_name",    :limit => 30
   end
 
-  create_table "notifications", :force => true do |t|
-    t.integer "target_id",              :null => false
-    t.integer "doer_id",                :null => false
-    t.integer "user_id",                :null => false
-    t.integer "type",      :limit => 8, :null => false
+  create_table "notification_logs", :force => true do |t|
+    t.integer  "post_id",      :null => false
+    t.integer  "initiator_id", :null => false
+    t.integer  "notify_type",  :null => false
+    t.datetime "create_at"
   end
+
+  add_index "notification_logs", ["post_id", "create_at"], :name => "index_notification_logs_on_post_id_and_create_at"
+
+  create_table "notification_messages", :force => true do |t|
+    t.integer  "user_id",      :null => false
+    t.integer  "initiator_id", :null => false
+    t.integer  "target_id",    :null => false
+    t.integer  "notify_type",  :null => false
+    t.datetime "create_at"
+  end
+
+  add_index "notification_messages", ["user_id"], :name => "index_notification_messages_on_user_id"
 
   create_table "paragraphs", :force => true do |t|
     t.text    "source_text",                          :null => false
