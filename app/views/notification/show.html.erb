@@ -1,0 +1,42 @@
+<% @messages.each do |item| %>
+
+<div class="notify" notification-message-ids="<%= item[:ids].join(',') %>">
+  <div class="close">x</div>
+  <div class="content">
+    <% case item[:notify_type] %>
+    <% when NotificationMessage::TypeAt %>
+      <% author = User.find(item[:initiator_ids].first) %>
+      <% comment = Comment.find(item[:target_id]) %>
+      
+      <b><%= author.name %></b>在文章<%= link_to "《#{comment.post.title}》", "#{post_path(comment.post)}#comment-containers" %>
+      的评论中提及了你：<%= limit_length(comment.content, 20) %>
+      
+    <% when NotificationMessage::TypeVote %>
+      <% translated_text = TranslatedText.find(item[:target_id]) %>
+      <% post = translated_text.paragraph.post %>
+      你在<%= link_to "《#{post.title}》", post_path(post)%>中提交的翻译，
+      <b><%= item[:initiator_ids].map do |id| User.find(id).name end.join('，') %></b>投了赞同票给你：
+      <%= limit_length(translated_text.content, 20) %>
+      
+    <% when NotificationMessage::TypePraisePost %>
+      <% post = Post.find(:item[target_id]) %>
+      你发表的文章<%= link_to "《#{post.title}》", post_path(post)%></a>得到了
+      <b><%= item.initiator_ids.map do |id| User.find(id).name end.join('，') %></b>的赞同。
+      
+    <% when NotificationMessage::TypePraiseComment %>
+      <% comment = Comment.find(item[:target_id]) %>
+      你对文章<%= link_to "《#{comment.post.title}》", "#{post_path(comment.post)}#comment-containers" %>发表的评论得到了
+      <b><%= item[:initiator_ids].map do |id| User.find(id).name end.join('，') %></b>的赞同：
+      <%= limit_length(comment.content, 20) %>
+    <% end %>
+  </div>
+  <div style="clear:both"></div>
+</div>
+
+<% end %>
+
+<% unless @messages.any? || @logs.any? %>
+  <div class="notify">
+    <div class="empty">当前没有任何提醒信息。</div>
+  </div>
+<% end %> 

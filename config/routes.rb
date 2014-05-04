@@ -15,6 +15,8 @@ YYWeb::Application.routes.draw do
   resources :translated_text
   resources :translated_text_vote
   
+  resources :notification
+  
   get 'user/loginpage' => 'user#login_page'
   get 'user/registerpage' => 'user#register_page'
   

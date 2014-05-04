@@ -69,10 +69,16 @@ function initCommentsContainers(containers) {
     var name = $(this).attr("author-name");
     clearTextValue();
     $("#comment-content").val(
-      $("#comment-content").val()+"@"+name
+      $("#comment-content").val()+"@"+name+' '
     );
     recoverTextValue();
-    return false;
+    
+    var commentContent = $('#comment-content');
+    $('html, body').animate({ scrollTop: commentContent.offset().top}, 500);
+    commentContent.focus();
+    
+    moveEnd(document.getElementById('comment-content'));
+    
   });
   $(".btn-delete-comment").click(function(){
     if(deleteCommentLock) {
@@ -99,6 +105,19 @@ function initCommentsContainers(containers) {
     return false;
   });
 }
+
+function moveEnd(obj){
+    obj.focus();
+    var len = obj.value.length;
+    if (document.selection) {
+        var sel = obj.createTextRange();
+        sel.moveStart('character',len);
+        sel.collapse();
+        sel.select();
+    } else if (typeof obj.selectionStart == 'number' && typeof obj.selectionEnd == 'number') {
+        obj.selectionStart = obj.selectionEnd = len;
+    }
+} 
 
 var deleteCommentLock = false;
 var currCommentsUrl = null;

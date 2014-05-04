@@ -29,7 +29,7 @@
               <div id="top-content">
                   <% if curr_user %>
                   <% notify_count = NotificationMessage.count(curr_user) %>
-                  <a id="notification" href="#">提醒<span class="<%= notify_count > 0 ?(:high-light) : (:gray) %>"><%= notify_count %></span></a>
+                  <a id="notification" href="#">提醒<span class="<%= notify_count > 0 ?'high-light' : 'gray' %>"><%= notify_count %></span></a>
                   <a id="sign" href="#" style="display:none"></a>
                   <a id="user" href="#"><%= curr_user.name %></a>
                   <% else %>
