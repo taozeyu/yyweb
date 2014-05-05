@@ -31,6 +31,22 @@ class ApplicationController < ActionController::Base
     curr_user.nil? or curr_user.ban?
   end
   
+  def find_at_users(comment)
+    users = {}
+    params[:content].scan(/@\S+ /).each do |user_name|
+      user_name = user_name[1..(user_name.length - 2)]
+      if users[user_name].nil?
+        user = User.find_by_name(user_name)
+        users[user_name] = (user.nil?) ? :NULL: user
+      end
+    end
+    users.each do |name, user|
+      if user != :NULL
+        NotificationMessage.notify(user, curr_user, comment, NotificationMessage::TypeAt)
+      end
+    end
+  end
+  
   def auto_login
     return if session[:has_check_login]
     session[:has_check_login] = true

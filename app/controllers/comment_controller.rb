@@ -22,6 +22,7 @@ class CommentController < ApplicationController
     post.save
     
     find_at_users(comment)
+    NotificationLog.notify(post, curr_user, comment, NotificationMessage::TypeComment)
     
     render :text => 'ok'
   end
@@ -53,24 +54,6 @@ class CommentController < ApplicationController
     comment.destroy
     
     render :text => 'ok'
-  end
-  
-  private
-  
-  def find_at_users(comment)
-    users = {}
-    params[:content].scan(/@\S+ /).each do |user_name|
-      user_name = user_name[1..(user_name.length - 2)]
-      if users[user_name].nil?
-        user = User.find_by_name(user_name)
-        users[user_name] = (user.nil?) ? :NULL: user
-      end
-    end
-    users.each do |name, user|
-      if user != :NULL
-        NotificationMessage.notify(user, curr_user, comment, NotificationMessage::TypeAt)
-      end
-    end
   end
   
 end

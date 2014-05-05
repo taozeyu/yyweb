@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140503133452) do
+ActiveRecord::Schema.define(:version => 20140505061832) do
 
   create_table "comment_praises", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -48,10 +48,11 @@ ActiveRecord::Schema.define(:version => 20140503133452) do
   end
 
   create_table "notification_logs", :force => true do |t|
-    t.integer  "post_id",      :null => false
-    t.integer  "initiator_id", :null => false
-    t.integer  "notify_type",  :null => false
+    t.integer  "post_id",                                  :null => false
+    t.integer  "initiator_id",                             :null => false
+    t.integer  "notify_type",                              :null => false
     t.datetime "create_at"
+    t.integer  "target_id",    :limit => 8, :default => 1, :null => false
   end
 
   add_index "notification_logs", ["post_id", "create_at"], :name => "index_notification_logs_on_post_id_and_create_at"
@@ -77,11 +78,13 @@ ActiveRecord::Schema.define(:version => 20140503133452) do
   add_index "paragraphs", ["post_id", "idx"], :name => "index_paragraphs_on_post_id_and_idx"
 
   create_table "post_attentions", :force => true do |t|
-    t.integer  "user_id",   :null => false
-    t.integer  "post_id",   :null => false
-    t.datetime "create_at", :null => false
+    t.integer  "user_id",                                            :null => false
+    t.integer  "post_id",                                            :null => false
+    t.datetime "create_at",                                          :null => false
+    t.datetime "last_watch_time", :default => '2014-05-05 05:06:08', :null => false
   end
 
+  add_index "post_attentions", ["post_id", "user_id"], :name => "index_post_attentions_on_post_id_and_user_id"
   add_index "post_attentions", ["user_id", "post_id"], :name => "index_post_attentions_on_user_id_and_post_id"
 
   create_table "post_praises", :force => true do |t|
@@ -134,19 +137,20 @@ ActiveRecord::Schema.define(:version => 20140503133452) do
   add_index "translated_texts", ["paragraph_id", "vote_count"], :name => "index_translated_texts_on_paragraph_id_and_vote_count"
 
   create_table "users", :force => true do |t|
-    t.string   "name",                :limit => 10,                 :null => false
-    t.string   "email",               :limit => 100,                :null => false
-    t.string   "password_store",      :limit => 64,                 :null => false
-    t.string   "salt",                                              :null => false
-    t.datetime "register_at",                                       :null => false
-    t.datetime "last_login_at",                                     :null => false
+    t.string   "name",                  :limit => 10,                 :null => false
+    t.string   "email",                 :limit => 100,                :null => false
+    t.string   "password_store",        :limit => 64,                 :null => false
+    t.string   "salt",                                                :null => false
+    t.datetime "register_at",                                         :null => false
+    t.datetime "last_login_at",                                       :null => false
     t.string   "icon"
     t.datetime "birthday"
-    t.integer  "sex",                 :limit => 8
-    t.text     "signature",           :limit => 255
-    t.integer  "schedule",                                          :null => false
-    t.integer  "group",                              :default => 0, :null => false
-    t.integer  "notifications_count",                :default => 0
+    t.integer  "sex",                   :limit => 8
+    t.text     "signature",             :limit => 255
+    t.integer  "schedule",                                            :null => false
+    t.integer  "group",                                :default => 0, :null => false
+    t.integer  "notifications_count",                  :default => 0
+    t.integer  "notification_logs_num",                :default => 0, :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

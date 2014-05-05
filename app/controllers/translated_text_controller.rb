@@ -26,6 +26,9 @@ class TranslatedTextController < ApplicationController
       post.last_reply_user = curr_user
       post.last_reply_at = Time.now
       post.save
+      
+      NotificationLog.notify(post, curr_user, tt, NotificationMessage::TypeTranslate)
+      
     end
     
     render :text => 'ok'

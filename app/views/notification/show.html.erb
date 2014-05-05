@@ -19,15 +19,29 @@
       <%= limit_length(translated_text.content, 20) %>
       
     <% when NotificationMessage::TypePraisePost %>
-      <% post = Post.find(:item[target_id]) %>
+      <% post = Post.find(item[:target_id]) %>
       你发表的文章<%= link_to "《#{post.title}》", post_path(post)%></a>得到了
-      <b><%= item.initiator_ids.map do |id| User.find(id).name end.join('，') %></b>的赞同。
+      <b><%= item[:initiator_ids].map do |id| User.find(id).name end.join('，') %></b>的赞同。
       
     <% when NotificationMessage::TypePraiseComment %>
       <% comment = Comment.find(item[:target_id]) %>
       你对文章<%= link_to "《#{comment.post.title}》", "#{post_path(comment.post)}#comment-containers" %>发表的评论得到了
       <b><%= item[:initiator_ids].map do |id| User.find(id).name end.join('，') %></b>的赞同：
       <%= limit_length(comment.content, 20) %>
+      
+    <% when NotificationMessage::TypeTranslate %>
+      <% translated_text = TranslatedText.find(item[:target_id]) %>
+      <% post = translated_text.paragraph.post %>
+      <% author = User.find(item[:initiator_ids].first) %>
+      
+      你关注的文章<%= link_to "《#{post.title}》", post_path(post)%>有了
+      <b><%= author.name %></b>提交的新翻译：
+      <%= limit_length(translated_text.content, 20) %>
+    
+    <% when NotificationMessage::TypeComment %>
+      <% comment = Comment.find(item[:target_id]) %>
+      你关注的文章<%= link_to "《#{comment.post.title}》", post_path(comment.post)%>有了<b><%= comment.author.name %></b>
+      的新评论：<%= limit_length(comment.content, 20) %>
     <% end %>
   </div>
   <div style="clear:both"></div>
@@ -35,7 +49,7 @@
 
 <% end %>
 
-<% unless @messages.any? || @logs.any? %>
+<% if not @messages.any? %>
   <div class="notify">
     <div class="empty">当前没有任何提醒信息。</div>
   </div>

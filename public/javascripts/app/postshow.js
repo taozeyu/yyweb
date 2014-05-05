@@ -87,7 +87,7 @@ function clickDelete(paragraph, id, tid) {
 }
 
 function clickEdit(paragraph, id, tid) {
-  var content = $("#t-"+tid).html();
+  var content = $("#t-"+tid).find('p').html();
   $("#p-rear").html(
     '<div class="p-line"></div>' +
     '<div class="p-title">编辑我的翻译：</div>' +
@@ -213,8 +213,12 @@ function initShowPanel(paragraph, id) {
     clickCancelVote(paragraph, id, $(this).attr("v-id"));
     return false;
   });
-  $(".btn-self").click(function(){
+  $(".btn-ban-for-self").click(function(){
     alert("不可以给自己的翻译投票！");
+    return false;
+  });
+  $(".btn-ban-for-login").click(function(){
+    alert("只有登录以后才可以投票！");
     return false;
   });
 }

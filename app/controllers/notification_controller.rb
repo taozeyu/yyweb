@@ -3,10 +3,11 @@ class NotificationController < ApplicationController
   def index
     if curr_user.nil?
       @messages = []
-      @logs = []
     else
+      if curr_user.notification_logs_num > 0
+        NotificationLog.copy_messages(curr_user)
+      end
       @messages = NotificationMessage.find(curr_user)
-      @logs = []
     end
     render :'notification/show', :layout => false
   end

@@ -16,7 +16,8 @@ class PostAttentionController < ApplicationController
     pa = PostAttention.create(
       :user_id => curr_user.id,
       :post_id => post.id,
-      :create_at => Time.now
+      :create_at => Time.now,
+      :last_watch_time => Time.now
     )
     render :text => pa.id.to_s
   end

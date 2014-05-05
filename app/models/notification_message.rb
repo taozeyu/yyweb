@@ -4,6 +4,8 @@ class NotificationMessage < ActiveRecord::Base
   TypeVote = 2
   TypePraisePost = 3
   TypePraiseComment = 4
+  TypeTranslate = 5
+  TypeComment = 6
   
   def self.notify(user, initiator, target, type)
     return nil if user.id == initiator.id
