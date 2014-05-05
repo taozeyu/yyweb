@@ -9,12 +9,6 @@
   <%= javascript_include_tag "app/public" %>
   <link href="/stylesheet/public.css" rel="stylesheet" type="text/css" />
   
-  <!-- 百度统计 -->
-  <script type="text/javascript">
-    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fc26d2a59ae273883cab506a9ab852d4e' type='text/javascript'%3E%3C/script%3E"));
-  </script>
-  
   <meta name="description" content="译译网，碎片式翻译，人人皆可参与。" />
   <%= yield :head %>
 </head>
@@ -48,5 +42,12 @@
     <%= yield %>
     </div>
   <div id="page-fill"></div>
+  
+  <!-- 百度统计 -->
+  <script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fc26d2a59ae273883cab506a9ab852d4e' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  
 </body>
 </html>
