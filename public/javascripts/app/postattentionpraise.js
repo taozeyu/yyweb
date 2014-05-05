@@ -81,10 +81,8 @@ function sendCancelMsg(url, id, success) {
 
 $(function(){
 
-  console.log($("#btn-attention"));
-
   $("#btn-attention").click(function(){
-    console.log('attention');
+
     if(lockButton("#btn-attention")) {
       clickAttention();
     }

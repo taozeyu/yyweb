@@ -80,6 +80,8 @@ input:focus, textarea:focus {
 }
 
 #top-bar {
+	z-index: 8;
+	min-width: 1248px;
 	background-color: #666666;
 	box-shadow:inset 0px 0px 27px #333333;
 	border-top-width: 6px;
@@ -94,6 +96,7 @@ input:focus, textarea:focus {
 	border-right-color: #333333;
 	border-bottom-color: #333333;
 	border-left-color: #333333;
+	position: relative;
 	padding: 10px;
 }
 #top-content {
@@ -282,7 +285,6 @@ input:focus, textarea:focus {
 	margin-bottom: 89px;
 }
 #add-area {
-	z-index: -1;
 	position: fixed;
 	box-shadow:0px 0px 15px #333333;
 	width: 237px;

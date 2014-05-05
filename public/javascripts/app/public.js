@@ -61,6 +61,21 @@ function recoverTextValue() {
   }
 }
 
+function initMoveAddArea() {
+
+    var addArea = $('#add-area');
+    if(!addArea) { return; }
+    
+    var marginLeft = parseInt(addArea.css('margin-left').match(/\d+/)[0]);
+    
+    $(window).scroll(function(){
+        addArea.css({
+            'margin-left': (marginLeft - $(this).scrollLeft())+'px'
+        });
+    });
+};
+
 $(function(){
   initTextNotifyEvent();
+  initMoveAddArea();
 });

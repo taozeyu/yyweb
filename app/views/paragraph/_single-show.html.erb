@@ -1,4 +1,4 @@
-<div class="p-mark show-paragraph-<%= @p.id %> <%= (@p.translated_text_count > 1)?"p-mark-useable":"p-mark-useless"%>"><%= @p.translated_text_count %></div>
+<div class="p-mark show-paragraph-<%= @p.id %> title="点击展开这个段落。" <%= (@p.translated_text_count > 1)?"p-mark-useable":"p-mark-useless"%>"><%= @p.translated_text_count %></div>
 <div class="p-source"><%= @p.source_text %></div>
 <% if @p.choosed_text.nil? %>
 <div class="p-translation" style="text-align: center;"><a class="show-paragraph-<%= @p.id %>" href="#">(当前该段没有译文，我来翻译吧！)</a></div>

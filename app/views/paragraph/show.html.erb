@@ -17,17 +17,17 @@
 					<% if (not @ban) and @self_text_id != t.id %>
 						<% vote_id = t.vote_id_by(curr_user) %>
 						<% if vote_id.nil? %>
-							<div class="btn-vote button" t-id="<%= t.id %>">
+							<div class="btn-vote button" title="表示对这片译文的赞赏，得票最多的译文将当选。" t-id="<%= t.id %>">
 								<div class="number"><%= t.vote_count %></div>
 								<div class="descr">投票</div>
 							</div>
 						<% elsif @self_text_id == t.id and @can_post %>
-							<div class="btn-self button">
+							<div class="btn-self button" title="这片译文由你提交，但你不可以给自己投票。">
 								<div class="number"><%= t.vote_count %></div>
 								<div class="descr">得票</div>
 							</div>
 						<% else %>
-							<div class="btn-cancel-vote button" t-id="<%= t.id %>" v-id="<%= vote_id %>">
+							<div class="btn-cancel-vote button" title="收回之间的投票。" t-id="<%= t.id %>" v-id="<%= vote_id %>">
 								<div class="number"><%= t.vote_count %></div>
 								<div class="descr">取消</div>
 							</div>
