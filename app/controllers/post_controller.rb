@@ -59,6 +59,11 @@ class PostController < ApplicationController
       end
     end
     
+    users = []
+    content = handle_user_input(params[:content]) do |name, user|
+      users << user
+    end
+    
     post = Post.new
     post.author = curr_user
     post.node = node
@@ -68,7 +73,7 @@ class PostController < ApplicationController
     post.state = Post::NormalState
     post.is_elite = false
     post.title = params[:title]
-    post.content = params[:content]
+    post.content = content
     post.last_reply_user = curr_user
     post.last_reply_at = Time.now
     
@@ -86,6 +91,11 @@ class PostController < ApplicationController
     if not post.save
       return render :text => "error"
     end
+    
+    users.each do |user|
+      # NotificationMessage.notify(user, curr_user, comment, NotificationMessage::TypeAt)
+    end
+    
     render :text => post.id.to_s
   end
   

@@ -87,7 +87,7 @@
 				<div class="title" style="text-align: center;"><%= @post.title %></div>
 				<div class="content">
 					<% @content.each do |line| %>
-					  <p><%= line %></p>
+					  <p><%=raw line %></p>
 					<% end %>
 					<div style="text-align: right">
 						<% if @post.can_delete_by?(curr_user) %>

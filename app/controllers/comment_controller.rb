@@ -11,9 +11,14 @@ class CommentController < ApplicationController
       return
     end
     
+    users = []
+    content = handle_user_input(params[:content]) do |name, user|
+      users << user
+    end
+    
     comment = Comment.create(
       :author => curr_user,
-      :content => params[:content],
+      :content => content,
       :post => post,
       :create_at => Time.now
     )
@@ -21,9 +26,10 @@ class CommentController < ApplicationController
     post.last_reply_at = Time.now
     post.save
     
-    find_at_users(comment)
     NotificationLog.notify(post, curr_user, comment, NotificationMessage::TypeComment)
-    
+    users.each do |user|
+      NotificationMessage.notify(user, curr_user, comment, NotificationMessage::TypeAt)
+    end
     render :text => 'ok'
   end
   

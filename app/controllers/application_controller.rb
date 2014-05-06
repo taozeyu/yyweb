@@ -31,20 +31,13 @@ class ApplicationController < ActionController::Base
     curr_user.nil? or curr_user.ban?
   end
   
-  def find_at_users(comment)
-    users = {}
-    params[:content].scan(/@\S+ /).each do |user_name|
-      user_name = user_name[1..(user_name.length - 2)]
-      if users[user_name].nil?
-        user = User.find_by_name(user_name)
-        users[user_name] = (user.nil?) ? :NULL: user
-      end
+  def handle_user_input(content)
+    content = CGI::escapeHTML(content)
+    content = find_user_in_string(content) do |name ,user|
+      yield name, user
     end
-    users.each do |name, user|
-      if user != :NULL
-        NotificationMessage.notify(user, curr_user, comment, NotificationMessage::TypeAt)
-      end
-    end
+    content = find_url_in_string(content)
+    return content
   end
   
   def auto_login
@@ -74,6 +67,36 @@ class ApplicationController < ActionController::Base
       
     rescue Exception => e
       cookies.delete :atmlogind
+    end
+  end
+  
+  private
+  
+  def handle_user_name_notify(user_name)
+    "<a class='user-info' href='#'>#{user_name}</a>"
+  end
+  
+  def find_user_in_string(str)
+    users = {}
+    str = str.gsub(/@\S+ /) do |user_name|
+      user_name = user_name[1..(user_name.length - 2)]
+      user = users[user_name]
+      if user.nil?
+        user = User.find_by_name(user_name)
+        users[user_name] = (user.nil?) ? :NULL: user
+      end
+      (user.nil?) ? user_name : handle_user_name_notify(user_name)
+    end
+    users.each do |name, user|
+      yield(name,user) if user != :NULL
+    end
+    return str
+  end
+  
+  def find_url_in_string(str)
+    regx = /(http|https|ftp):\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/\?%&=]*)?/
+    return str.gsub(regx) do |url|
+      "<a href='#{url}' rel='nofollow'>#{url}</a>"
     end
   end
   

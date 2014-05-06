@@ -21,7 +21,7 @@
 				<div class="c-content">
 					<div class="c-body">
 					<% c.content.split(/\n/).each do |p| %>
-					<p><%= p %></p>
+					<p><%=raw p %></p>
 					<% end %>
 					</div>
 					<div class="c-operation">
