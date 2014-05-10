@@ -1,11 +1,13 @@
 class NotificationMessage < ActiveRecord::Base
 
-  TypeAt = 1
+# TypeAt = 1
   TypeVote = 2
   TypePraisePost = 3
   TypePraiseComment = 4
   TypeTranslate = 5
   TypeComment = 6
+  TypePostAt = 7
+  TypeCommentAt = 8
   
   def self.notify(user, initiator, target, type)
     return nil if user.id == initiator.id
@@ -24,7 +26,7 @@ class NotificationMessage < ActiveRecord::Base
     buff = {}
     res = []
     self.where(:user_id => user.id).order('create_at DESC').each do |item|
-      if item.notify_type == TypeAt
+      if item.notify_type == TypePostAt || item.notify_type == TypeCommentAt
         res << {
           :ids => [item.id],
           :target_id => item.target_id,

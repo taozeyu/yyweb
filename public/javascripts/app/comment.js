@@ -69,7 +69,7 @@ function initCommentsContainers(containers) {
     var name = $(this).attr("author-name");
     clearTextValue();
     $("#comment-content").val(
-      $("#comment-content").val()+"@"+name+' '
+      $("#comment-content").val()+"回复： @"+name+' \n'
     );
     recoverTextValue();
     

@@ -28,7 +28,7 @@ class CommentController < ApplicationController
     
     NotificationLog.notify(post, curr_user, comment, NotificationMessage::TypeComment)
     users.each do |user|
-      NotificationMessage.notify(user, curr_user, comment, NotificationMessage::TypeAt)
+      NotificationMessage.notify(user, curr_user, comment, NotificationMessage::TypeCommentAt)
     end
     render :text => 'ok'
   end

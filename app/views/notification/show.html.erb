@@ -4,19 +4,26 @@
   <div class="close">x</div>
   <div class="content">
     <% case item[:notify_type] %>
-    <% when NotificationMessage::TypeAt %>
+    <% when NotificationMessage::TypeCommentAt %>
       <% author = User.find(item[:initiator_ids].first) %>
       <% comment = Comment.find(item[:target_id]) %>
       
       <b><%= author.name %></b>在文章<%= link_to "《#{comment.post.title}》", "#{post_path(comment.post)}#comment-containers" %>
-      的评论中提及了你：<%= limit_length(comment.content, 20) %>
+      的评论中提及了你：<%=raw limit_length(strip_tags(comment.content), 60) %>
       
+    <% when NotificationMessage::TypePostAt %>
+      <% author = User.find(item[:initiator_ids].first) %>
+      <% post = Post.find(item[:target_id]) %>
+      
+      <b><%= author.name %></b>在文章<%= link_to "《#{post.title}》", "#{post_path(post)}" %>
+      中提及了你：<%= limit_length(strip_tags(post.content), 60) %>
+    
     <% when NotificationMessage::TypeVote %>
       <% translated_text = TranslatedText.find(item[:target_id]) %>
       <% post = translated_text.paragraph.post %>
       你在<%= link_to "《#{post.title}》", post_path(post)%>中提交的翻译，
       <b><%= item[:initiator_ids].map do |id| User.find(id).name end.join('，') %></b>投了赞同票给你：
-      <%= limit_length(translated_text.content, 20) %>
+      <%= limit_length(strip_tags(translated_text.content), 60) %>
       
     <% when NotificationMessage::TypePraisePost %>
       <% post = Post.find(item[:target_id]) %>
@@ -27,7 +34,7 @@
       <% comment = Comment.find(item[:target_id]) %>
       你对文章<%= link_to "《#{comment.post.title}》", "#{post_path(comment.post)}#comment-containers" %>发表的评论得到了
       <b><%= item[:initiator_ids].map do |id| User.find(id).name end.join('，') %></b>的赞同：
-      <%= limit_length(comment.content, 20) %>
+      <%= limit_length(strip_tags(comment.content), 60) %>
       
     <% when NotificationMessage::TypeTranslate %>
       <% translated_text = TranslatedText.find(item[:target_id]) %>
@@ -36,12 +43,12 @@
       
       你关注的文章<%= link_to "《#{post.title}》", post_path(post)%>有了
       <b><%= author.name %></b>提交的新翻译：
-      <%= limit_length(translated_text.content, 20) %>
+      <%= limit_length(strip_tags(translated_text.content), 60) %>
     
     <% when NotificationMessage::TypeComment %>
       <% comment = Comment.find(item[:target_id]) %>
       你关注的文章<%= link_to "《#{comment.post.title}》", post_path(comment.post)%>有了<b><%= comment.author.name %></b>
-      的新评论：<%= limit_length(comment.content, 20) %>
+      的新评论：<%= limit_length(strip_tags(comment.content), 60) %>
     <% end %>
   </div>
   <div style="clear:both"></div>

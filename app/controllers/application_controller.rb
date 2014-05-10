@@ -73,22 +73,24 @@ class ApplicationController < ActionController::Base
   private
   
   def handle_user_name_notify(user_name)
-    "<a class='user-info' href='#'>#{user_name}</a>"
+    "<a class='user-info' href='#'>@#{user_name}</a>&nbsp"
   end
   
   def find_user_in_string(str)
     users = {}
     str = str.gsub(/@\S+ /) do |user_name|
       user_name = user_name[1..(user_name.length - 2)]
-      user = users[user_name]
-      if user.nil?
-        user = User.find_by_name(user_name)
-        users[user_name] = (user.nil?) ? :NULL: user
-      end
-      (user.nil?) ? user_name : handle_user_name_notify(user_name)
+      users[user_name.downcase] = user_name
+      handle_user_name_notify(user_name)
     end
-    users.each do |name, user|
-      yield(name,user) if user != :NULL
+    names = []
+    users.each do |name, value|
+      names << "'#{name}'"
+    end
+    return if names.empty?
+    
+    User.where("lower(name) in (#{names.join(', ')})").each do |user|
+      yield(user.name, user)
     end
     return str
   end

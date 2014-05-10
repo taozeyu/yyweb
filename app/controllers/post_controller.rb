@@ -93,7 +93,7 @@ class PostController < ApplicationController
     end
     
     users.each do |user|
-      # NotificationMessage.notify(user, curr_user, comment, NotificationMessage::TypeAt)
+      NotificationMessage.notify(user, curr_user, post, NotificationMessage::TypePostAt)
     end
     
     render :text => post.id.to_s

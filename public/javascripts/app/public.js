@@ -64,7 +64,7 @@ function recoverTextValue() {
 function initMoveAddArea() {
 
     var addArea = $('#add-area');
-    if(!addArea) { return; }
+    if(addArea.length <= 0) { return; }
     
     var marginLeft = parseInt(addArea.css('margin-left').match(/\d+/)[0]);
     
