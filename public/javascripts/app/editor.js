@@ -252,17 +252,51 @@ function exchange(p1, p2) {
   t2.val(temp);
 }
 
+var ParagraphLimit = 170;
+var ParagraphSplitFun = [
+  
+  function(text) {
+    return text.split(/\n\W*\n/);
+  },
+  
+  function(text) {
+    return text.split(/\n/);
+  },
+  
+  function(text) {
+    return text.split(/[\.|!|?|。|！|？]/);
+  }
+];
+
+function splitText(text, funIndex) {
+  var fun = ParagraphSplitFun[funIndex];
+  var arr = fun(text).filter(function(str){
+    return $.trim(str) != "";
+  });
+  
+  var finalArray = [];
+  
+  arr.forEach(function(cell) {
+    if(cell.length > ParagraphLimit && funIndex + 1 < ParagraphSplitFun.length) {
+      
+      var a = splitText(cell, funIndex + 1);
+      cell = "";
+      
+      a.forEach(function(c) {
+        if(cell.length > 0 && cell.length + c.length > ParagraphLimit) {
+          finalArray.push(cell);
+        }
+        cell += c;
+      });
+    }
+    finalArray.push(cell);
+  });
+  return finalArray;
+}
+
 function splitArticle(text) {
 
-  var arr = text.split("\n");
-  var rsarr = [];
-  for(var i=0; i<arr.length; ++i) {
-    var content = $.trim(arr[i]);
-    if(content != "") {
-      rsarr.push(content);
-    }
-  }
-  return rsarr;
+  return splitText(text, 0);
 }
 
 $(function(){

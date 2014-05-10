@@ -87,7 +87,7 @@ class ApplicationController < ActionController::Base
     users.each do |name, value|
       names << "'#{name}'"
     end
-    return if names.empty?
+    return str if names.empty?
     
     User.where("lower(name) in (#{names.join(', ')})").each do |user|
       yield(user.name, user)
