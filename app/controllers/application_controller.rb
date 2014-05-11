@@ -98,7 +98,7 @@ class ApplicationController < ActionController::Base
   def find_url_in_string(str)
     regx = /(http|https|ftp):\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/\?%&=]*)?/
     return str.gsub(regx) do |url|
-      "<a href='#{url}' rel='nofollow'>#{url}</a>"
+      "<a href='#{url}' rel='nofollow' target='_blank'>#{url}</a>"
     end
   end
   
