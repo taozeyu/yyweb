@@ -30,7 +30,7 @@ function showTipsPanel(panelId, clearAfterHide, panelInitFun) {
   currWillClear = clearAfterHide;
   
   var panel = $(panelId);
-  panel.css("display", "inline");
+  panel.show();
   
   var filterFun = function(evt){
     evt.stopPropagation();
@@ -51,7 +51,7 @@ function showTipsPanel(panelId, clearAfterHide, panelInitFun) {
 
 function hideTipsPanel(panelId, clearAfterHide) {
   var panel = $(panelId);
-  panel.css("display", "none");
+  panel.hide();
   if(clearAfterHide) {
     panel.html("");
   }
@@ -61,17 +61,25 @@ function hideTipsPanel(panelId, clearAfterHide) {
 }
 
 function clickInsideButton() {
+
   if(isPanelRefreshing) {
     return false;
   }
+  clearTextValue();
+  var submitData = $(this).parent().serialize(),
+      submitUrl = $('#top-login .submit-url').attr('href');
+  recoverTextValue();
+  
+  console.log("params: %s", submitData);
+  
   isPanelRefreshing = true;
   var url = $(this).attr("href");
   setTipsPanelWaiting($(currTipsPanel));
   if(url) {
     clickInsidHref(url);
   } else {
-    var form = $(this).parent();
-    submitInsideForm(form, form.attr("action"));
+    var form = $('#top-login form');
+    submitInsideForm(form, submitUrl, submitData);
   }
   return false;
 }
@@ -87,12 +95,7 @@ function clickInsidHref(url) {
   });
 }
 
-function submitInsideForm(form, url) {
-  //use methods from public.js to make sure input text is empty if user wants keep it empty.
-  clearTextValue();
-  var data = form.serialize();
-  recoverTextValue();
-  
+function submitInsideForm(form, url, data) {
   $.ajax({
       type : "POST",
       url : url,

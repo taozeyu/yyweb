@@ -1,3 +1,5 @@
+				<!-- 为兼容IE，因为IE不能从form中取action -->
+				<a class="submit-url" href="/user/register" style="display:none"></a>
 				<div id="top-tab">
 				  <%= link_to '登录', { :controller=> 'user', :action => 'login_page'}, :class => 'inside-button' %>
 				  <%= link_to '注册', { :controller=> 'user', :action => 'register_page'}, :class => 'inside-button' %>

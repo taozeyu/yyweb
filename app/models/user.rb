@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   PasswordLengthMax = 15
   
   RexEmail = /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
+  RexUserName = /^(\w|[\u0100-\uFFFF])+$/
   
   Unchecked = 1 # 未验证邮箱(schedule)
   Checked = 2 # 验证了邮箱(schedule)
@@ -30,7 +31,8 @@ class User < ActiveRecord::Base
   
   validates :name, :presence => {:message => "不能为空"},
                    :length => {:minimum => 3, :maximum => 10, :message => "用户名字数必须为3～10个" },
-                   :uniqueness => {:case_sensitive => false, :message => "用户名已注册"}
+                   :uniqueness => {:case_sensitive => false, :message => "用户名已注册"},
+                   :format => {:with => RexUserName, :message => "只能由数字、英文字母、汉字等其他文字的符号组成。"}
   validates :email, :presence => {:message => "不能为空"},
                     :length => {:minimum => 1, :maximum => 100, :message => "邮箱太长"},
                     :uniqueness => {:case_sensitive => false, :message => "邮箱已注册"},

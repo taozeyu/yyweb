@@ -1,10 +1,12 @@
+				<!-- 为兼容IE，因为IE不能从form中取action -->
+				<a class="submit-url" href="/user/login" style="display:none"></a>
 				<div id="top-tab">
 				  <%= link_to '登录', { :controller=> 'user', :action => 'login_page'}, :class => 'inside-button' %>
 				  <%= link_to '注册', { :controller=> 'user', :action => 'register_page'}, :class => 'inside-button' %>
 				</div>
 				<div id="top-title">登陆</div>
 				<div id="top-body">
-				<form method="post" action="/user/login">
+				<form id="login-form" method="post" action="/user/login">
 				  <% if params[:login_info].blank? %>
 					<input class="textarea-notify top-text" name="login_info" type="text" value="用户名/email地址"/><br/>
 					<% else %>
