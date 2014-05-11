@@ -9,17 +9,17 @@
 				<form method="post" action="/user/register">
 					<span>用户名:</span>
 					<% if @error_code && @error_code[:name] %>
-					<span style="color: #660000;"><%= @error_code[:name][0]%></span>
+					<span style="color: #FFCC66;"><%= @error_code[:name][0]%></span>
 					<% end%>
 					<input class="textarea-notify top-text" name="user_name" type="text" value="用户名(20个字以内)"/><br/>
 					<span>邮箱:</span>
 					<% if @error_code && @error_code[:email] %>
-					<span style="color: #660000;"><%= @error_code[:email][0]%></span>
+					<span style="color: #FFCC66;"><%= @error_code[:email][0]%></span>
 					<% end%>
 					<input class="textarea-notify top-text" name="email" type="text" value="Email(推荐使用常用邮箱)"/><br/>
 					<span>密码:</span>
 					<% if @error_code && @error_code[:password] %>
-					<span style="color: #660000;"><%= @error_code[:password]%></span>
+					<span style="color: #FFCC66;"><%= @error_code[:password]%></span>
 					<% end%>
 					<input class="top-text" name="password" type="password"/><br/>
 					再输入一次密码:

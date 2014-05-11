@@ -63,6 +63,12 @@
 	margin-left: 32px;
 	margin-bottom: 12px;
 }
+#post-body .content a {
+	font-weight: bold;
+}
+#post-body .content a:hover {
+	text-decoration: underline;
+}
 #post-body .content div {
 	margin-top: 37px;
 }
@@ -220,6 +226,12 @@
 }
 .comment .c-body {
 	min-height: 93px;
+}
+.comment .c-body a{
+	font-weight: bold;
+}
+.comment .c-body a:hover{
+	text-decoration: underline;
 }
 .comment .c-operation {
 	color: #999999;

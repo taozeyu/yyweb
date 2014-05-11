@@ -54,6 +54,9 @@ input, textarea {
 input:focus, textarea:focus {
 	box-shadow:0px 0px 5px #FF7D7D;
 }
+.textarea-notify {
+	color: #CCCCCC;
+}
 .center-containers {
 	margin-right: auto;
 	margin-left: auto;
