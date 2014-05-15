@@ -5,6 +5,7 @@ tmp/**/*
 
 *~
 
+/db/schema.rb
 /config/database.yml
 /config/environments
 /public/images
