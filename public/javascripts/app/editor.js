@@ -252,11 +252,11 @@ function exchange(p1, p2) {
   t2.val(temp);
 }
 
-var ParagraphLimit = 170;
+var ParagraphLimit = 950;
 var ParagraphSplitFun = [
   
   function(text) {
-    return text.split(/\n\W*\n/);
+    return text.split(/\n\S*\n/);
   },
   
   function(text) {
@@ -264,8 +264,28 @@ var ParagraphSplitFun = [
   },
   
   function(text) {
-    return text.split(/[\.|!|?|。|！|？]/);
-  }
+    return text.replace(/[\.|!|?|。|！|？]/g, function(item) {
+      return item+"\n";
+    }).split(/\n/);
+  },
+  
+  function(text) {
+    return text.replace(/[\,|，|、]/g, function(item) {
+      return item+"\n";
+    }).split(/\n/);
+  },
+  
+  function(text) {
+    return text.splite(/\ /);
+  },
+  
+  function(text) {
+    var center = Math.floor(text.length / 2)
+    return [
+      text.substr(0, center),
+      text.substr(center, text.length - center),
+    ];
+  },
 ];
 
 function splitText(text, funIndex) {
@@ -285,6 +305,7 @@ function splitText(text, funIndex) {
       a.forEach(function(c) {
         if(cell.length > 0 && cell.length + c.length > ParagraphLimit) {
           finalArray.push(cell);
+          cell = "";
         }
         cell += c;
       });

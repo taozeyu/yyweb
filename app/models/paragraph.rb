@@ -1,5 +1,9 @@
 class Paragraph < ActiveRecord::Base
-
+  
+  TypeContent = 1 # can commit translated text.
+  TypeTitle = 2
+  TypeLine = 3
+  
   belongs_to :post
   belongs_to :choosed_text, :foreign_key => :translated_text_id, :class_name => "TranslatedText"
   has_many :translated_texts, :order => 'vote_count desc, create_at'

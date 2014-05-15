@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140505061832) do
+ActiveRecord::Schema.define(:version => 20140515013720) do
 
   create_table "comment_praises", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -68,11 +68,12 @@ ActiveRecord::Schema.define(:version => 20140505061832) do
   add_index "notification_messages", ["user_id"], :name => "index_notification_messages_on_user_id"
 
   create_table "paragraphs", :force => true do |t|
-    t.text    "source_text",                          :null => false
-    t.integer "translated_text_count", :default => 0, :null => false
-    t.integer "post_id",               :default => 0, :null => false
-    t.integer "idx",                   :default => 0, :null => false
+    t.text    "source_text",                                       :null => false
+    t.integer "translated_text_count",              :default => 0, :null => false
+    t.integer "post_id",                            :default => 0, :null => false
+    t.integer "idx",                                :default => 0, :null => false
     t.integer "translated_text_id"
+    t.integer "paragraph_type",        :limit => 8, :default => 1, :null => false
   end
 
   add_index "paragraphs", ["post_id", "idx"], :name => "index_paragraphs_on_post_id_and_idx"

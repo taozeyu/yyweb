@@ -103,10 +103,17 @@
 			<!-- 段落 -->
 			<% if @post.post_type == Post::TranslationType %>
 			<% @paragraphs.each do |p| %>
-			<div id="p-<%= p.id %>" class="paragraph">
-			<% @p = p %>
-			<%= render :partial => '/paragraph/single-show' %>
-			</div>
+			<% case p.paragraph_type %>
+			<% when Paragraph::TypeContent %>
+			  <div id="p-<%= p.id %>" class="paragraph">
+			    <% @p = p %>
+			    <%= render :partial => '/paragraph/single-show' %>
+			  </div>
+			<% when Paragraph::TypeTitle %>
+			  <div class="title"><%= p.source_text %></div>
+			<% when Paragraph::TypeLine %>
+			  <div class="line"></div>
+			<% end %>
 			<% end %>
 			
 			<div class="splite-line"></div>

@@ -80,7 +80,19 @@ class PostController < ApplicationController
     if type == Post::TranslationType
       idx = 0
       paragraphs.each do |p|
-        paragraph = Paragraph.new
+        p = p.strip
+        if /^>>>>>+[^><]*<<<<<+$/.match(p).nil?
+          paragraph = Paragraph.new(:paragraph_type => Paragraph::TypeContent)
+        else
+          cut = /[^><]+/.match(p)
+          p = (cut.nil?) ? "" : cut[0].strip
+          if p.empty?
+            paragraph = Paragraph.new(:paragraph_type => Paragraph::TypeLine)
+            p = "#line"
+          else
+            paragraph = Paragraph.new(:paragraph_type => Paragraph::TypeTitle)
+          end
+        end
         paragraph.source_text = p
         paragraph.idx = idx
         post.paragraphs << paragraph
