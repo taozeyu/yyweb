@@ -83,13 +83,38 @@
 	box-shadow:inset 4px 4px 25px #FAFAFA, inset -4px -4px 25px #CCCCCC, 0px 0px 2px #000000;
 	border-radius:10px;
 }
+#paragraphs {
+	padding-bottom: 27px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #999999;
+	margin-bottom: 37px;
+}
+#paragraphs .title {
+	font-size: 20px;
+	font-weight: bold;
+	color: #333333;
+}
+#paragraphs .line {
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #999999;
+	margin-top: 21px;
+	margin-bottom: 21px;
+}
+
 .p-source {
 	margin-left: 12px;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 18px;
+	line-height: 28px;
 }
 .p-translation {
 	margin-top: 25px;
 	margin-bottom: 15px;
 	margin-left: 12px;
+	font-size: 18px;
+	line-height: 28px;
 }
 .p-mark {
 	cursor: pointer;

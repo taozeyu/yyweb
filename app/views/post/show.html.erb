@@ -102,6 +102,7 @@
 			</div>
 			<!-- 段落 -->
 			<% if @post.post_type == Post::TranslationType %>
+			<div id="paragraphs">
 			<% @paragraphs.each do |p| %>
 			<% case p.paragraph_type %>
 			<% when Paragraph::TypeContent %>
@@ -115,8 +116,7 @@
 			  <div class="line"></div>
 			<% end %>
 			<% end %>
-			
-			<div class="splite-line"></div>
+			</div>
 			<% end %>
 			
 			<!-- 评论 -->
