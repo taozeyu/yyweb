@@ -108,6 +108,13 @@ class PostController < ApplicationController
       NotificationMessage.notify(user, curr_user, post, NotificationMessage::TypePostAt)
     end
     
+    PostAttention.create(
+      :user_id => curr_user.id,
+      :post_id => post.id,
+      :create_at => Time.now,
+      :last_watch_time => Time.now
+    )
+    
     render :text => post.id.to_s
   end
   

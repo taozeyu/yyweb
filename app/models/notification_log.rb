@@ -3,7 +3,8 @@ class NotificationLog < ActiveRecord::Base
   def self.notify(post, initiator, target, type)
     self.connection.execute(
       "update users set notification_logs_num = notification_logs_num + 1 " +
-      "where id in (select user_id from post_attentions where post_id = #{post.id})"
+      "where id in (select user_id from post_attentions where post_id = #{post.id} " +
+      "and user_id != #{initiator.id})"
     )
     self.create(
       :post_id => post.id,
@@ -24,7 +25,7 @@ class NotificationLog < ActiveRecord::Base
       "select distinct #{user.id} as user_id, logs.initiator_id, logs.target_id, logs.notify_type, logs.create_at " + 
       "from notification_logs logs, post_attentions atts "+
       "where logs.post_id = atts.post_id and logs.initiator_id != #{user.id} and " + 
-      "logs.create_at > atts.last_watch_time"
+      "atts.user_id = #{user.id} and logs.create_at > atts.last_watch_time"
     )
     PostAttention.refresh_watch_time(user)
   end
