@@ -127,7 +127,7 @@ input:focus, textarea:focus {
 	margin-top: 23px;
 	border-radius:12px;
 	background-color: #666666;
-	box-shadow:inset 0px 0px 27px #333333;
+	box-shadow:inset 0px 0px 27px #333333, 3px 3px 4px #737373;
 	color: #FFFFFF;
 }
 #top-user-list {
