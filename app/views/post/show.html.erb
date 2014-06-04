@@ -62,12 +62,12 @@
 			</div>
 		</div>
 		<div id="main-area">
-			<div id="navigation">
-		    <a href="/">首页</a>
-		    <span> >> </span>
-		    <%= link_to @post.node.name, node_path(@post.node) %> 
-		    <span> >> 贴子正文</span>
-	  	</div>
+			<nav id="navigation">
+				<a href="/">首页</a>
+				<span> >> </span>
+				<%= link_to @post.node.name, node_path(@post.node) %> 
+				<span> >> 贴子正文</span>
+			</nav>
 			<!-- 作者信息 -->
 			<div id="author" class="piece">
 				<div class="proposer">翻译申请人</div>
@@ -84,7 +84,7 @@
 			</div>
 			<!-- 正文 -->
 			<div id="post-body" class="piece">
-				<div class="title" style="text-align: center;"><%= @post.title %></div>
+				<h1 class="title" style="text-align: center;"><%= @post.title %></h1>
 				<div class="content">
 					<% @content.each do |line| %>
 					  <p><%=raw line %></p>
