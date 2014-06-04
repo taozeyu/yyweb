@@ -338,3 +338,12 @@ input:focus, textarea:focus {
 	background-color: #999999;
 	color: #FFFFFF;
 }
+#footer {
+	max-width: 1024px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 12px;
+	margin-top: 12px;
+	font-size: 13px;
+	padding-left: 45px;
+}
