@@ -165,3 +165,31 @@
 	padding-left: 11px;
 	background-color: #FFFFFF;
 }
+.pages {
+	text-align: center;
+	padding-top: 45px;
+}
+
+.pages span, .pages em, .pages a {
+	border-radius:6px;
+	background-color: #999999;
+	color: #FFFFFF;
+	margin-right: 2px;
+	margin-left: 2px;
+	font-size: 14px;
+	font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+	padding: 11px;
+}
+.pages a {
+	background-color: #0066CC;
+}
+.pages a:hover {
+	background-color: #0099FF;
+}
+.pages .current {
+	background-color: #FFFFFF;
+	color: #FF3300;
+	border: 2px solid #0066CC;
+	padding: 9px;
+}

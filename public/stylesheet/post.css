@@ -103,6 +103,18 @@
 	margin-top: 21px;
 	margin-bottom: 21px;
 }
+#paragraphs .notify-text {
+	font-size: 13px;
+	color: #333333;
+	padding-top: 45px;
+	padding-right: 45px;
+	padding-left: 45px;
+	padding-bottom: 0px;
+}
+#paragraphs .notify-text p {
+	margin: 8px;
+}
+
 
 .p-source {
 	margin-left: 12px;
