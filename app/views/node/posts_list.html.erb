@@ -24,7 +24,7 @@
 			</div>
 		</div>
 		<div id="main-area">
-			<div id="navigation"><a href="/">首页</a> >> <%= @node.name %></div>
+			<nav id="navigation"><a href="/">首页</a> >> <%= @node.name %></nav>
 			<div id="publish" class="title">
 				<span style="float:left">贴子列表</span>
 				<% if @node.can_post_by? (curr_user)%>
