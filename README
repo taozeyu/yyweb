@@ -1,3 +1,93 @@
 知言译义网 http://zyyywang.com
 
 有问题可以联系我 xiangtantaozeyu@gmail.com (MOsky)
+
+-------------部署------------------
+
+环境：Rails 3.0 + Passenger + Nginx + mysql 14.14
+
+----------------部署------------------
+
+$ gem install passenger
+
+$ passenger-install-nginx-module
+
+然后选择 1；然后选择 ruby
+
+如果中途提示系统缺乏什么，按照提示安装就是，然后重新安装Nginx。（回到第一步）
+
+选择 1 （Yes: download, compile and install Nginx for me...）
+
+Please specify a prefix directory [/opt/nginx]:
+
+设置安装路径为：/usr/local/nginx
+
+等待安装完毕...
+
+$ln -s /usr/local/nginx/sbin/nginx /usr/sbin/
+
+$ vim /usr/local/nginx/conf/nginx.conf
+
+server {
+    listen 80;
+    server_name zyyywang.com;
+    
+    root /home/taozeyu/projects/yyweb/public;
+    
+    location / {
+        proxy_pass http:127.0.0.1:3000/;
+    }
+}----------------部署------------------
+
+$ gem install passenger
+
+$ passenger-install-nginx-module
+
+然后选择 1；然后选择 ruby
+
+如果中途提示系统缺乏什么，按照提示安装就是，然后重新安装Nginx。（回到第一步）
+
+选择 1 （Yes: download, compile and install Nginx for me...）
+
+Please specify a prefix directory [/opt/nginx]:
+
+设置安装路径为：/usr/local/nginx
+
+等待安装完毕...
+
+$ vim /usr/local/nginx/conf/nginx.conf
+
+server {
+    listen 80;
+    server_name zyyywang.com;
+    
+    root /home/taozeyu/projects/yyweb/public;
+    
+    if ($host != 'zyyywang.com' ) {
+        rewrite ^/(.*)$ http://zyyywang.com/$1 permanent;
+    }
+    
+    location / {
+        proxy_pass http:127.0.0.1:8080/;
+    }
+}
+
+安全起见，不许外网访问3000端口。
+
+$ screen
+
+在screen 中启动服务程序
+
+$ cd /home/rails/yyweb
+
+$ passenger start -e production -p 8080
+
+$ nginx
+
+--------------------操作-------------------
+
+$ nginx 启动 Nginx
+
+$ nginx -s stop 关闭 Nginx
+
+$ nginx -s reload （修改/usr/local/nginx/conf/nginx 后需要重新载入配置）
