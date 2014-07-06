@@ -47,10 +47,19 @@
 					<div class="post-info-width">
 						<div class="post-first-line">
 							<% if p.post_type == Post::TopicType %>
-							<span class="post-type">[贴]</span>
+							<span class="post-type" title="普通贴">贴</span>
 							<% elsif p.post_type == Post::TranslationType %>
-							<span class="post-type">[译]</span>
+							<span class="post-type" title="翻译贴">译</span>
 							<% end %>
+							
+							<% if p.is_top? %>
+							<span class="post-honor" title="首页贴">顶</span>
+							<% end %>
+							
+							<% if p.is_sticky? %>
+							<span class="post-honor" title="精华贴">精</span>
+							<% end %>
+							
 							<%= link_to p.title, post_path(p), :title => p.title %>
 						</div>
 						<div class="post-second-line">

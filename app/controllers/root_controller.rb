@@ -5,7 +5,7 @@ class RootController < ApplicationController
     limit = 12
     num = limit
     num = pick_up(num, limit, HomePagePost.posts)
-    num = pick_up(num, limit, Post.where(:is_delete => false).order('last_reply_at desc'))
+    num = pick_up(num, limit, Post.where(:is_delete => false).order('honor_state, last_reply_at desc'))
     
     @left_posts = @posts[0..5]
     @right_posts = @posts[6..11]

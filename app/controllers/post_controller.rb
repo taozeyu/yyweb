@@ -155,6 +155,82 @@ class PostController < ApplicationController
     render :text => "ok"
   end
   
+  def set_top
+    post = Post.find_by_id(params[:id].to_i)
+    
+    if post.nil?
+      render :text => "error"
+      return
+    end
+    
+    if not post.can_top_by?(curr_user)
+      render :text => "error"
+      return
+    end
+    
+    post.set_top = true    
+    post.save
+    render :text => "ok"
+    
+  end
+  
+  def cancel_top
+    post = Post.find_by_id(params[:id].to_i)
+    
+    if post.nil?
+      render :text => "error"
+      return
+    end
+    
+    if not post.can_top_by?(curr_user)
+      render :text => "error"
+      return
+    end
+    
+    post.set_top = false
+    post.save
+    render :text => "ok"
+    
+  end
+  
+  def set_sticky
+    post = Post.find_by_id(params[:id].to_i)
+    
+    if post.nil?
+      render :text => "error"
+      return
+    end
+    
+    if not post.can_sticky_by?(curr_user)
+      render :text => "error"
+      return
+    end
+    
+    post.set_sticky = true
+    post.save
+    render :text => "ok"
+    
+  end
+  
+  def cancel_sticky
+    post = Post.find_by_id(params[:id].to_i)
+    
+    if post.nil?
+      render :text => "error"
+      return
+    end
+    
+    if not post.can_sticky_by?(curr_user)
+      render :text => "error"
+      return
+    end
+    
+    post.set_sticky = false
+    post.save
+    render :text => "ok"
+    
+  end
+  
   private 
   
   def check_node_and_type(node, type)

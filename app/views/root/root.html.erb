@@ -10,9 +10,9 @@
 				<div class="post-info">
 					<div class="post-first-line">
 						<% if p.post_type == Post::TopicType %>
-						<span class="post-type">[贴]</span>
+						<span class="post-type" title="普通贴">贴</span>
 						<% elsif p.post_type == Post::TranslationType %>
-						<span class="post-type">[译]</span>
+						<span class="post-type" title="翻译贴">译</span>
 						<% end %>
 						<%= link_to limit_length(p.title, 21), post_path(p), :title => p.title %>
 					</div>

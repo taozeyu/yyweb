@@ -1,6 +1,12 @@
 YYWeb::Application.routes.draw do
   
-  resources :post
+  resources :post do
+    post :set_top, :on => :member
+    post :set_sticky, :on => :member
+    post :cancel_top, :on => :member
+    post :cancel_sticky, :on => :member
+  end
+  
   resources :comment
   
   resources :paragraph do

@@ -271,6 +271,55 @@ function clickDeletePost() {
   return false;
 }
 
+function generalHonorCommit(methodName, checkText, successText) {
+
+  if(editOrDeleteLock) {
+    return false;
+  }
+  if(!confirm(checkText)) {
+    return false;
+  }
+  editOrDeleteLock = true;
+  
+  var data={
+    _method : "post"
+  };
+  $.ajax({
+      type : "POST",
+      url : "/post/"+postId + "/" + methodName,
+      dataType : "html",
+      data : data,
+      cache : false,
+      success : function(rs){
+        if(rs=="ok") {
+          alert(successText);
+           window.location.reload();
+        } else {
+          alert("错误："+rs);
+        }
+      }
+  });
+}
+
+function initHonorButton() {
+  $('#btn-set-top').click(function() {
+    generalHonorCommit('set_top', '文章将置首页，是否继续？', '成功置首页！');
+    return false;
+  });
+  $('#btn-cancel-top').click(function() {
+    generalHonorCommit('cancel_top', '文章将取消置首页，是否继续？', '成功取消置首页！');
+    return false;
+  });
+  $('#btn-set-sticky').click(function() {
+    generalHonorCommit('set_sticky', '文章将设置为精华，是否继续？', '成功设置为精华！');
+    return false;
+  });
+  $('#btn-cancel-sticky').click(function() {
+    generalHonorCommit('cancel_sticky', '文章将取消精华，是否继续？', '成功取消精华！');
+    return false;
+  });
+}
+
 $(function(){
   $(".paragraph").each(function(){
     var paragraph = $(this);
@@ -287,4 +336,5 @@ $(function(){
     });
   });
   $("#btn-delete-post").click(clickDeletePost);
+  initHonorButton();
 });

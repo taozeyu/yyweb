@@ -7,7 +7,7 @@ development:
   username: root
   password: 123456
   host: localhost
-  socket: /var/run/mysqld/mysqld.sock
+  socket: /tmp/mysql.sock
   pool: 5
   timeout: 5000
 
@@ -30,8 +30,8 @@ production:
   encoding: utf8
   database: yyweb
   username: root
-  password: gxfchbnl0731
+  password: 123456
   host: localhost
-  socket: /var/lib/mysql/mysql.sock
+ #socket: /tmp/mysql.sock
   pool: 5
   timeout: 5000

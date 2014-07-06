@@ -9,6 +9,11 @@ class Post < ActiveRecord::Base
   NormalState = 1
   DeleteState = 2
   
+  NoHonorPost = 400
+  StickyPost = 300
+  TopPost = 200
+  StickyAndTopPost = 100
+  
   ColumnsExceptContent = Post.column_names - ["content"]
   
   has_many :paragraphs, :order => 'paragraphs.idx'
@@ -39,15 +44,44 @@ class Post < ActiveRecord::Base
     return ps
   end
   
+  def is_top?
+    return honor_state == TopPost || honor_state == StickyAndTopPost
+  end
+  
+  def is_sticky?
+    return honor_state == StickyPost || honor_state == StickyAndTopPost
+  end
+  
+  def set_top=(value)
+    if value
+      self.honor_state = Post::TopPost if self.honor_state == Post::NoHonorPost
+      self.honor_state = Post::StickyAndTopPost if self.honor_state == Post::StickyPost
+    else
+      self.honor_state = Post::NoHonorPost if self.honor_state == Post::TopPost
+      self.honor_state = Post::StickyPost if self.honor_state == Post::StickyAndTopPost
+    end
+  end
+  
+  def set_sticky=(value)
+    if value
+      self.honor_state = Post::StickyPost if self.honor_state == Post::NoHonorPost
+      self.honor_state = Post::StickyAndTopPost if self.honor_state == Post::TopPost
+    else
+      self.honor_state = Post::NoHonorPost if self.honor_state == Post::StickyPost
+      self.honor_state = Post::TopPost if self.honor_state == Post::StickyAndTopPost
+    end
+  end
+  
   def can_reply?
     return true
   end
                    
   def can_delete_by? (user)
-    self.node.can_manager_by?(user)
+    (not user.nil?) && self.node.can_manager_by?(user)
   end
   
   def can_edit_by? (user)
+    return false if user.nil?
     if self.node.can_manager_by?(user)
       return true
     elsif (not user.nil?) and user.id == self.author.id
@@ -55,6 +89,14 @@ class Post < ActiveRecord::Base
     else
       return false
     end
+  end
+  
+  def can_top_by? (user)
+    (not user.nil?) && user.belongs_to_managers?
+  end
+  
+  def can_sticky_by? (user)
+    (not user.nil?) && self.node.can_manager_by?(user)
   end
   
   def has_delete?

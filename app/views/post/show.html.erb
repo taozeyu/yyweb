@@ -93,6 +93,23 @@
 						<% if @post.can_delete_by?(curr_user) %>
 						  <a href="#" id="btn-delete-post">[删除]</a>
 						<% end %>
+						
+						<% if @post.can_top_by?(curr_user) %>
+						  <% unless @post.is_top? %>
+						  <a href="#" id="btn-set-top">[置首]</a>
+						  <% else %>
+						  <a href="#" id="btn-cancel-top">[取消置首]</a>
+						  <% end %>
+						<% end %>
+						
+						<% if @post.can_sticky_by?(curr_user) %>
+						  <% unless @post.is_sticky? %>
+						  <a href="#" id="btn-set-sticky">[精华]</a>
+						  <% else %>
+						  <a href="#" id="btn-cancel-sticky">[取消精华]</a>
+						  <% end %>
+						<% end %>
+						
 						<% if @post.can_edit_by?(curr_user) %>
 						  <%= link_to '[编辑]', edit_post_path(@post), :class => 'inside-button' %>
 						<% end %>
