@@ -40,8 +40,27 @@
 	float: left;
 }
 .post .post-type {
-	font-weight: bold;
-	color: #0066CC;
+	box-shadow:inset 1px 1px 3px #0099FF, inset -1px -1px 3px #003399;
+	border-radius:7px;
+	font-size: 14px;
+	background-color: #0066CC;
+	color: #FFFFFF;
+	padding-top: 2px;
+	padding-right: 4px;
+	padding-bottom: 2px;
+	padding-left: 4px;
+}
+
+.post .post-honor {
+	box-shadow:inset 1px 1px 3px #FF6666, inset -1px -1px 3px #DD2222;
+	border-radius:7px;
+	font-size: 14px;
+	background-color: #FF3333;
+	color: #FFFFFF;
+	padding-top: 2px;
+	padding-right: 4px;
+	padding-bottom: 2px;
+	padding-left: 4px;
 }
 
 .post .post-first-line {
