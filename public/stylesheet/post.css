@@ -304,10 +304,8 @@
 }
 #post-operation {
 	text-align: center;
-}
-
-#post-operation {
 	width: 137px;
+	margin-left: 26px;
 }
 #post-operation a {
 	font-size: 16px;
@@ -339,8 +337,15 @@
 	font-size: 17px;
 	color: #000000;
 	margin-bottom: 14px;
-	margin-left: 18px;
+	margin-left: 62px;
+	line-height: 27px;
 }
+#add-area .label .label-content div {
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+
 .p-translation-area .state {
 	float: left;
 	width: 80px;

@@ -59,7 +59,7 @@
 }
 .post .post-info-width {
 	margin-left: 19px;
-	width: 690px;
+	width: 670px;
 	height: 46px;
 	float: left;
 }
@@ -128,38 +128,15 @@
 	font-size: 16px;
 }
 #node-name {
-	-webkit-background-clip: border-box;
-	-webkit-background-origin: padding-box;
-	-webkit-background-size: auto;
-	-webkit-box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 5px 0px, rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.298039) 0px -1px 0px 0px inset;
-	background-attachment: scroll;
-	background-clip: border-box;
-	background-color: rgba(0, 0, 0, 0);
-	background-image: linear-gradient(rgb(158, 40, 18) 0%, rgb(111, 13, 13) 100%);
-	background-origin: padding-box;
-	background-size: auto;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 5px;
-	border-top-left-radius: 0px;
-	border-top-right-radius: 5px;
-	box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 5px 0px, rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.298039) 0px -1px 0px 0px inset;
-	box-sizing: border-box;
-	color: rgb(221, 221, 221);
-	display: block;
+	border-radius:10px;
 	font-size: 21px;
-	font-weight: 300;
-	height: 65px;
-	margin-bottom: 30px;
-	margin-left: -48px;
-	margin-right: 0px;
-	margin-top: 30px;
-	padding-bottom: 24px;
-	padding-left: 50px;
-	padding-right: 20px;
 	padding-top: 20px;
-	position: relative;
-	text-shadow: rgba(0, 0, 0, 0.498039) 0px 1px 3px;
-	width: 242px;
+	padding-bottom: 20px;
+	text-align: center;
+	color: #FFFFFF;
+	background-color: #0066FF;
+	margin-bottom: 30px;
+	font-weight: normal;
 }
 #node-name:before {
 	content: "";
@@ -175,9 +152,7 @@
 	margin-left: -17px;
 }
 #node-introduction {
-	border-radius:20px;
 	box-shadow: 0px 0px 5px #999999;
-	width: 161px;
 	padding-top: 21px;
 	padding-right: 11px;
 	padding-bottom: 21px;
