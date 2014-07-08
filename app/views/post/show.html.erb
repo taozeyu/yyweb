@@ -60,6 +60,15 @@
 					<div>最后评论/翻译时间：<%= formate_date(@post.last_reply_at) %>(<%= time_to_now(@post.last_reply_at) %>前)</div>
 				</div>
 			</div>
+			
+			<div class="label">
+			  <div class="label-title">推荐阅读</div>
+			  <nav class="label-content">
+			  <% @post.node.posts_list.limit(6).each do |p| %>
+			    <div><%= link_to p.title, post_path(p), :title => p.title, :target => '_blank' %></div>
+			  <% end %>
+			  </nav>
+			</div>
 		</div>
 		<div id="main-area">
 			<nav id="navigation">
